@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-artistic-dark {
+    background-color: #050A1A;
+  }
+  .bg-artistic-card {
+    background-color: #0A152E;
+  }
+  .bg-artistic-panel {
+    background-color: #0E172A;
+  }
+  .bg-artistic-gold {
+    background-color: #C5A059;
+  }
+  .text-artistic-gold {
+    color: #C5A059;
+  }
+  .border-artistic-gold {
+    border-color: #C5A059;
+  }
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-garamond {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-syne {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+/* Custom font styling and scrollbar */
+body {
+  background-color: #050A1A;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050A1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E2942;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
+

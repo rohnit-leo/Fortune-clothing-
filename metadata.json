@@ -1,0 +1,6 @@
+{
+  "name": "Fortune Clothing Company",
+  "description": "World-Class B2B Garment Manufacturer & Wholesale Platform for Fortune Clothing Company",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
