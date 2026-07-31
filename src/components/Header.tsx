@@ -45,14 +45,14 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-[#050A1A]/95 backdrop-blur-md border-b border-white/10 shadow-2xl transition-all">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Brand Logo & Name - Real Symbol & High Fashion Serif */}
         <div 
           onClick={() => { setActiveTab('home'); setSelectedCategory(null); }}
-          className="flex items-center gap-3 cursor-pointer group shrink-0"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0"
         >
-          <div className="h-11 w-11 flex items-center justify-center p-0.5 group-hover:scale-105 transition-transform duration-300">
+          <div className="h-9 w-9 sm:h-11 sm:w-11 flex items-center justify-center p-0.5 group-hover:scale-105 transition-transform duration-300">
             <img 
               src={LOGO_SYMBOL_URL} 
               alt="Fortune Clothing Symbol" 
@@ -60,11 +60,11 @@ export const Header: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-cinzel text-[20px] sm:text-[22px] font-bold tracking-[0.2em] leading-none text-white group-hover:text-[#C5A059] transition">
+            <span className="font-cinzel text-[16px] sm:text-[22px] font-bold tracking-[0.15em] sm:tracking-[0.2em] leading-none text-white group-hover:text-[#C5A059] transition">
               FORTUNE
             </span>
-            <span className="text-[9px] font-syne tracking-[0.4em] text-[#C5A059] uppercase mt-1 font-semibold">
-              Clothing Company
+            <span className="text-[8px] sm:text-[9px] font-syne tracking-[0.25em] sm:tracking-[0.4em] text-[#C5A059] uppercase mt-0.5 sm:mt-1 font-semibold">
+              Clothing Co.
             </span>
           </div>
         </div>
@@ -162,10 +162,10 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Action Icons & Cart */}
-        <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           
           {/* Live Search Input */}
-          <div className="hidden sm:flex items-center bg-[#0a152e] border border-white/10 rounded-full px-3.5 py-1.5 w-40 xl:w-52 focus-within:border-[#C5A059] transition">
+          <div className="hidden md:flex items-center bg-[#0a152e] border border-white/10 rounded-full px-3.5 py-1.5 w-36 xl:w-52 focus-within:border-[#C5A059] transition">
             <Search className="w-3.5 h-3.5 text-slate-400 mr-2 shrink-0" />
             <input 
               type="text" 
@@ -181,10 +181,10 @@ export const Header: React.FC = () => {
             />
           </div>
 
-          {/* Compare Button */}
+          {/* Compare Button - Hidden on tiny screens, shown on sm+ */}
           <button 
             onClick={() => setIsCompareModalOpen(true)}
-            className="relative p-2 text-slate-300 hover:text-[#C5A059] transition rounded-lg hover:bg-white/5 cursor-pointer shrink-0"
+            className="hidden xs:flex relative p-2 text-slate-300 hover:text-[#C5A059] transition rounded-lg hover:bg-white/5 cursor-pointer shrink-0"
             title="Compare Garments"
           >
             <Scale className="w-4 h-4" />
@@ -195,10 +195,10 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* Wishlist Button */}
+          {/* Wishlist Button - Hidden on tiny screens, shown on sm+ */}
           <button 
             onClick={() => { setActiveTab('catalogue'); }}
-            className="relative p-2 text-slate-300 hover:text-[#C5A059] transition rounded-lg hover:bg-white/5 cursor-pointer shrink-0"
+            className="hidden xs:flex relative p-2 text-slate-300 hover:text-[#C5A059] transition rounded-lg hover:bg-white/5 cursor-pointer shrink-0"
             title="Wishlist"
           >
             <Heart className="w-4 h-4" />
@@ -209,15 +209,17 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* Premium B2B Cart Button - Non-Cropped Layout */}
+          {/* Premium B2B Cart Button - Guaranteed Un-cropped Layout */}
           <button 
             onClick={() => setIsCartOpen(true)}
-            className="relative flex items-center gap-2 bg-[#C5A059] hover:bg-white text-[#050A1A] text-[10px] sm:text-[11px] font-syne tracking-[0.2em] font-extrabold uppercase py-2.5 px-3.5 sm:px-4 shadow-xl transition-all cursor-pointer rounded-xl shrink-0 whitespace-nowrap active:scale-95"
+            className="relative flex items-center gap-1.5 sm:gap-2 bg-[#C5A059] hover:bg-white text-[#050A1A] py-2 sm:py-2.5 px-2.5 sm:px-4 shadow-xl transition-all cursor-pointer rounded-xl shrink-0 whitespace-nowrap active:scale-95"
             title="View B2B Wholesale Cart"
           >
             <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-[#050A1A]" />
-            <span className="inline font-syne font-extrabold tracking-[0.2em]">B2B CART</span>
-            <span className="bg-[#050A1A] text-[#C5A059] px-2 py-0.5 rounded-md text-[10px] font-mono font-bold shrink-0 ml-0.5">
+            <span className="font-syne font-extrabold text-[10px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.2em]">
+              <span className="hidden sm:inline">B2B </span>CART
+            </span>
+            <span className="bg-[#050A1A] text-[#C5A059] px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] font-mono font-bold shrink-0">
               {cartTotalQuantity}
             </span>
           </button>
@@ -225,7 +227,8 @@ export const Header: React.FC = () => {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-200 hover:text-[#C5A059] shrink-0"
+            className="lg:hidden p-1.5 sm:p-2 text-slate-200 hover:text-[#C5A059] shrink-0 cursor-pointer"
+            aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

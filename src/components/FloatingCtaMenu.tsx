@@ -19,27 +19,27 @@ export const FloatingCtaMenu: React.FC = () => {
   const LOGO_SYMBOL_URL = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/IMG_3157.PNG";
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-[99] flex flex-col items-end">
       
       {/* Expanded Menu Actions */}
       {isOpen && (
-        <div className="mb-3 space-y-2.5 animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="mb-3 space-y-2.5 max-w-[calc(100vw-2rem)] w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-4 duration-200">
           
           {/* Action 1: WhatsApp Quick Connect */}
           <a
             href="https://wa.me/917528802003?text=Hello%20Fortune%20Clothing%20Co.%2C%20I%20would%20like%20to%20inquire%20about%20wholesale%20manufacturing."
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-3 bg-[#0A152E] hover:bg-[#121c33] border border-[#25D366]/40 hover:border-[#25D366] text-white px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="flex items-center gap-3 bg-[#0A152E]/95 border border-[#25D366]/50 hover:border-[#25D366] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#25D366] text-[#050A1A] flex items-center justify-center font-bold shadow-md">
-              <MessageCircle className="w-4 h-4 fill-current" />
+            <div className="w-9 h-9 rounded-xl bg-[#25D366] text-[#050A1A] flex items-center justify-center font-bold shadow-md shrink-0">
+              <MessageCircle className="w-5 h-5 fill-current" />
             </div>
-            <div className="text-left">
-              <div className="text-xs font-bold font-syne text-[#25D366] group-hover:underline">
+            <div className="text-left min-w-0">
+              <div className="text-xs font-bold font-syne text-[#25D366] group-hover:underline truncate">
                 WhatsApp Factory Line
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-300 font-mono truncate">
                 +91 75288 02003 • Instant Quote
               </div>
             </div>
@@ -48,16 +48,16 @@ export const FloatingCtaMenu: React.FC = () => {
           {/* Action 2: Request Instant Callback */}
           <button
             onClick={() => { setActiveModal('callback'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E] hover:bg-[#121c33] border border-[#C5A059]/40 hover:border-[#C5A059] text-white px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-[#C5A059]/50 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#C5A059] text-[#050A1A] flex items-center justify-center font-bold shadow-md">
-              <PhoneCall className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-[#C5A059] text-[#050A1A] flex items-center justify-center font-bold shadow-md shrink-0">
+              <PhoneCall className="w-5 h-5" />
             </div>
-            <div className="text-left">
-              <div className="text-xs font-bold font-syne text-[#C5A059]">
+            <div className="text-left min-w-0">
+              <div className="text-xs font-bold font-syne text-[#C5A059] truncate">
                 Executive Callback
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-300 font-mono truncate">
                 Connect in 15 Minutes
               </div>
             </div>
@@ -66,16 +66,16 @@ export const FloatingCtaMenu: React.FC = () => {
           {/* Action 3: B2B Profitability Engine */}
           <button
             onClick={() => { setActiveTab('calculator'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E] hover:bg-[#121c33] border border-white/10 hover:border-[#C5A059] text-white px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#121c33] text-[#C5A059] border border-[#C5A059]/30 flex items-center justify-center font-bold">
-              <Calculator className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-[#C5A059] border border-[#C5A059]/30 flex items-center justify-center font-bold shrink-0">
+              <Calculator className="w-5 h-5" />
             </div>
-            <div className="text-left">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059]">
+            <div className="text-left min-w-0">
+              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059] truncate">
                 B2B Profit Calculator
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-400 font-mono truncate">
                 Estimate Landed Cost
               </div>
             </div>
@@ -84,16 +84,16 @@ export const FloatingCtaMenu: React.FC = () => {
           {/* Action 4: Track Order Status */}
           <button
             onClick={() => { setActiveTab('tracker'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E] hover:bg-[#121c33] border border-white/10 hover:border-[#C5A059] text-white px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#121c33] text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold">
-              <Truck className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold shrink-0">
+              <Truck className="w-5 h-5" />
             </div>
-            <div className="text-left">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-emerald-400">
+            <div className="text-left min-w-0">
+              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-emerald-400 truncate">
                 Live Production Tracker
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-400 font-mono truncate">
                 Ludhiana Dispatch Desk
               </div>
             </div>
@@ -102,16 +102,16 @@ export const FloatingCtaMenu: React.FC = () => {
           {/* Action 5: Request Custom Sample / Tech Pack */}
           <button
             onClick={() => { setActiveModal('sample'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E] hover:bg-[#121c33] border border-white/10 hover:border-[#C5A059] text-white px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#121c33] text-amber-300 border border-amber-400/30 flex items-center justify-center font-bold">
-              <FileText className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-amber-300 border border-amber-400/30 flex items-center justify-center font-bold shrink-0">
+              <FileText className="w-5 h-5" />
             </div>
-            <div className="text-left">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059]">
+            <div className="text-left min-w-0">
+              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059] truncate">
                 Order Garment Sample
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-400 font-mono truncate">
                 Fabric & Fit Verification
               </div>
             </div>
@@ -120,37 +120,32 @@ export const FloatingCtaMenu: React.FC = () => {
         </div>
       )}
 
-      {/* Main Trigger Hub Button */}
+      {/* Main Trigger Hub Circular Button - No Text Label */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative flex items-center gap-3 px-4 py-3 rounded-full border-2 transition-all duration-300 shadow-2xl cursor-pointer ${
+        className={`group relative w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 shadow-2xl cursor-pointer active:scale-95 shrink-0 ${
           isOpen 
-            ? 'bg-[#050A1A] text-white border-[#C5A059]' 
-            : 'bg-[#C5A059] hover:bg-white text-[#050A1A] border-[#C5A059] hover:border-white scale-105'
+            ? 'bg-[#0A152E] border-[#C5A059] text-[#C5A059]' 
+            : 'bg-[#C5A059] hover:bg-white border-[#C5A059] hover:border-white scale-105 shadow-[0_0_25px_rgba(197,160,89,0.5)]'
         }`}
-        title="Smart B2B Action Menu"
+        aria-label="Speed Action Hub"
+        title="B2B Speed Actions"
       >
-        <div className="w-7 h-7 flex items-center justify-center p-0.5 overflow-hidden shrink-0">
+        {isOpen ? (
+          <X className="w-6 h-6 text-[#C5A059]" />
+        ) : (
           <img 
             src={LOGO_SYMBOL_URL} 
             alt="Fortune Logo" 
-            className="w-full h-full object-contain"
+            className="w-8 h-8 object-contain filter drop-shadow group-hover:scale-110 transition-transform"
           />
-        </div>
-
-        <span className="text-[10px] font-syne font-extrabold uppercase tracking-[0.2em] whitespace-nowrap">
-          {isOpen ? 'Close Menu' : 'Smart B2B Hub'}
-        </span>
-
-        <div className={`p-1 rounded-full transition-transform duration-300 ${isOpen ? 'rotate-180 bg-white/10' : ''}`}>
-          {isOpen ? <X className="w-4 h-4 text-[#C5A059]" /> : <ChevronUp className="w-4 h-4 text-[#050A1A] group-hover:text-[#050A1A]" />}
-        </div>
+        )}
 
         {/* Pulse Dot Indicator when closed */}
         {!isOpen && (
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+          <span className="absolute -top-1 -right-1 flex h-4 w-4">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#25D366] border border-[#050A1A]"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-[#25D366] border-2 border-[#050A1A]"></span>
           </span>
         )}
       </button>
