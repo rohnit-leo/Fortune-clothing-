@@ -1,150 +1,161 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { ArrowUpRight, Sparkles, Layers } from 'lucide-react';
+import { REAL_PRODUCT_IMAGES } from '../data/products';
+import { ArrowRight, ChevronRight, Layers } from 'lucide-react';
 
 export const CategoryShowcase: React.FC = () => {
   const { setSelectedCategory, setActiveTab } = useCart();
 
-  const categories = [
+  const CATEGORIES_DATA = [
     {
-      name: 'T-Shirts',
-      subtitle: '180 GSM to 280 GSM Heavyweight Compact Cotton',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
-      tag: 'Oversized & Streetwear',
-      description: 'Super combed bio-washed tees, drop shoulder cuts, and customizable necklines.'
+      title: 'T-Shirts',
+      subtitle: '200 - 240 GSM',
+      count: '150+ Designs',
+      image: REAL_PRODUCT_IMAGES[0],
+      categoryKey: 'T-Shirts'
     },
     {
-      name: 'Sweatshirts',
-      subtitle: '300 GSM to 360 GSM Loopknit & Fleece',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
-      tag: 'Executive Winter Line',
-      description: 'Soft brushed fleece lining engineered for precision high-density embroidery.'
+      title: 'Oversized Tees',
+      subtitle: '240 GSM Streetwear',
+      count: '90+ Designs',
+      image: REAL_PRODUCT_IMAGES[1],
+      categoryKey: 'T-Shirts'
     },
     {
-      name: 'Hoodies',
-      subtitle: '330 GSM to 400 GSM French Terry',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
-      tag: 'Heavyweight Pullovers',
-      description: 'Double-walled hood shells, thick cotton drawstrings, and kangaroo pouch.'
+      title: 'Polo T-Shirts',
+      subtitle: '230 GSM Matty Pique',
+      count: '60+ Designs',
+      image: REAL_PRODUCT_IMAGES[2],
+      categoryKey: 'T-Shirts'
     },
     {
-      name: 'Jackets',
-      subtitle: 'Water-Repellent Puffer & Windbreakers',
-      moq: 'MOQ 150 Pcs',
-      image: 'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80',
-      tag: 'All-Weather Outerwear',
-      description: 'Insulated down alternatives, SBS heavy zippers, and storm flap security.'
+      title: 'Sweatshirts',
+      subtitle: '330 GSM Loopknit',
+      count: '80+ Designs',
+      image: REAL_PRODUCT_IMAGES[3],
+      categoryKey: 'Sweatshirts'
     },
     {
-      name: 'Lowers',
-      subtitle: '220 GSM to 260 GSM Daily Wear Cotton',
-      moq: 'MOQ 150 Pcs',
-      image: 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=800&q=80',
-      tag: 'Breathable Casuals',
-      description: 'Soft cotton jersey lowers designed for daily lounge and nightwear sales.'
+      title: 'Hoodies',
+      subtitle: '380 GSM French Terry',
+      count: '110+ Designs',
+      image: REAL_PRODUCT_IMAGES[6],
+      categoryKey: 'Hoodies'
     },
     {
-      name: 'Joggers',
-      subtitle: '280 GSM to 320 GSM Tech Stretch Fleece',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=800&q=80',
-      tag: 'Athleisure & Gymwear',
-      description: 'Ergonomic tapered leg cuts, concealed zip security pockets, and Lycra ribs.'
+      title: 'Tracksuits',
+      subtitle: '280 GSM Poly Interlock',
+      count: '45+ Sets',
+      image: REAL_PRODUCT_IMAGES[2],
+      categoryKey: 'Tracksuits'
     },
     {
-      name: 'Tracksuits',
-      subtitle: 'Matching 2-Piece Active Sets',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
-      tag: 'Performance Sportswear',
-      description: 'Moisture wicking poly-spandex blends built for sports academies and teams.'
+      title: 'Lowers',
+      subtitle: '240 GSM Jersey',
+      count: '70+ Designs',
+      image: REAL_PRODUCT_IMAGES[4],
+      categoryKey: 'Lowers'
     },
     {
-      name: 'Winter Wear',
-      subtitle: '400+ GSM Ludhiana Heritage Fleece',
-      moq: 'MOQ 100 Pcs',
-      image: 'https://images.unsplash.com/photo-1516762689617-e1cffffd478d?auto=format&fit=crop&w=800&q=80',
-      tag: 'Thermal Protection',
-      description: 'Heavy thermal retention sets crafted directly in India’s hosiery capital.'
+      title: 'Joggers',
+      subtitle: '290 GSM Lycra Stretch',
+      count: '85+ Designs',
+      image: REAL_PRODUCT_IMAGES[1],
+      categoryKey: 'Joggers'
+    },
+    {
+      title: 'Jackets',
+      subtitle: 'Puffer & Windcheaters',
+      count: '55+ Designs',
+      image: REAL_PRODUCT_IMAGES[7],
+      categoryKey: 'Jackets'
+    },
+    {
+      title: 'Winter Wear',
+      subtitle: '420 GSM Thermal Wool',
+      count: '95+ Designs',
+      image: REAL_PRODUCT_IMAGES[8],
+      categoryKey: 'Winter Wear'
+    },
+    {
+      title: 'Manufacturing',
+      subtitle: 'Bulk Dyeing & Cuts',
+      count: 'Tech Pack OEM',
+      image: REAL_PRODUCT_IMAGES[5],
+      tabKey: 'factory'
+    },
+    {
+      title: 'Private Label',
+      subtitle: 'Tags & Packaging',
+      count: 'Full Branding',
+      image: REAL_PRODUCT_IMAGES[0],
+      tabKey: 'privatelabel'
     }
   ];
 
-  const handleSelect = (categoryName: string) => {
-    setSelectedCategory(categoryName);
-    setActiveTab('catalogue');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <section className="py-20 px-4 lg:px-8 bg-[#070E22] text-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-10 bg-white border-b border-gray-100 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        {/* Section Header */}
+        <div className="flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#D4AF37] mb-2">
-              <Layers className="w-3.5 h-3.5" /> B2B Wholesale Catalogue
+            <div className="inline-flex items-center gap-1.5 text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059] mb-1">
+              <Layers className="w-3.5 h-3.5 text-[#C5A059]" /> B2B Category Navigation
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-white">
-              Core Manufacturing Lines
+            <h2 className="font-serif text-2xl sm:text-3xl font-normal text-gray-900">
+              Browse Wholesale Garment Categories
             </h2>
-            <p className="text-slate-400 text-xs md:text-sm mt-1 max-w-xl">
-              Factory-direct wholesale apparel engineered to international quality standards. Select any category to view full GSM & size matrices.
-            </p>
           </div>
 
           <button
-            onClick={() => { setSelectedCategory(null); setActiveTab('catalogue'); }}
-            className="text-xs font-bold text-[#D4AF37] hover:text-amber-300 transition flex items-center gap-1 uppercase tracking-wider underline cursor-pointer"
+            onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
+            className="hidden sm:flex items-center gap-1.5 text-xs font-syne font-normal uppercase tracking-wider text-[#0F172A] hover:text-[#C5A059] transition cursor-pointer"
           >
-            View All Products & GSM Specifications →
+            <span>View All Products</span>
+            <ArrowRight className="w-4 h-4 text-[#C5A059]" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat, idx) => (
+        {/* 2 Columns on Mobile, 3 on SM, 4 on MD, 6 on LG */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 pt-1">
+          {CATEGORIES_DATA.map((item, idx) => (
             <div
               key={idx}
-              onClick={() => handleSelect(cat.name)}
-              className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-[#D4AF37] transition-all duration-300 bg-[#0B142B] cursor-pointer shadow-xl flex flex-col justify-between"
+              onClick={() => {
+                if (item.tabKey) {
+                  setActiveTab(item.tabKey as any);
+                } else {
+                  setSelectedCategory(item.categoryKey as any);
+                  setActiveTab('catalogue');
+                }
+              }}
+              className="bg-gray-50 hover:bg-white border border-gray-200 hover:border-[#0F172A] p-2.5 sm:p-3 rounded-2xl shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer group text-center flex flex-col justify-between"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B142B] via-transparent to-black/30" />
-                
-                <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md border border-slate-700 text-[#D4AF37] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  {cat.moq}
-                </span>
+              <div>
+                <div className="relative h-28 sm:h-36 w-full rounded-xl overflow-hidden mb-2.5 bg-gray-200">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-2">
+                    <span className="text-[10px] font-syne font-normal uppercase tracking-wider text-white bg-[#0F172A]/90 px-2.5 py-1 rounded-full flex items-center gap-1">
+                      Explore <ChevronRight className="w-3 h-3 text-[#C5A059]" />
+                    </span>
+                  </div>
+                </div>
 
-                <span className="absolute top-3 right-3 bg-amber-500/90 text-slate-950 font-extrabold text-[10px] px-2 py-0.5 rounded-md">
-                  {cat.tag}
-                </span>
+                <h3 className="font-serif font-normal text-xs sm:text-sm text-gray-900 group-hover:text-[#0F172A] truncate">
+                  {item.title}
+                </h3>
+                <p className="text-[10px] text-gray-500 font-normal truncate mt-0.5">
+                  {item.subtitle}
+                </p>
               </div>
 
-              <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-serif font-bold text-xl text-white group-hover:text-amber-200 transition">
-                      {cat.name}
-                    </h3>
-                    <div className="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-[#D4AF37] group-hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                  <p className="text-xs font-semibold text-[#D4AF37] mt-1">{cat.subtitle}</p>
-                  <p className="text-xs text-slate-400 mt-2 line-clamp-2">{cat.description}</p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
-                  <span>Customization Supported</span>
-                  <span className="text-emerald-400 font-semibold">In-Stock Raw Fabric</span>
-                </div>
+              <div className="mt-2 inline-block bg-white group-hover:bg-[#0F172A] group-hover:text-white border border-gray-200 text-gray-700 text-[9px] font-mono font-normal px-2 py-0.5 rounded-full transition">
+                {item.count}
               </div>
             </div>
           ))}

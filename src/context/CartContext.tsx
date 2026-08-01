@@ -11,10 +11,12 @@ interface CartContextType {
   cartTotalQuantity: number;
   
   wishlist: string[];
-  toggleWishlist: (productId: string) => void;
+  toggleWishlist: (productOrId: string | Product) => void;
+  isInWishlist: (productId: string) => boolean;
   
-  compareList: string[];
-  toggleCompare: (productId: string) => void;
+  compareList: Product[];
+  toggleCompare: (productOrId: string | Product) => void;
+  isInCompare: (productId: string) => boolean;
   clearCompare: () => void;
 
   recentlyViewed: string[];
@@ -53,7 +55,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem('fcc_cart');
-      return saved ? JSON.parse(saved) : [];
+      if (saved) {
+        const parsed: CartItem[] = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          // Remove any stale cart items with 100 quantity from old defaults
+          return parsed.filter(item => item.totalQuantity !== 100);
+        }
+      }
+      return [];
     } catch {
       return [];
     }
@@ -68,7 +77,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   });
 
-  const [compareList, setCompareList] = useState<string[]>([]);
+  const [compareList, setCompareList] = useState<Product[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<string>('home');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -151,21 +160,34 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const cartTotalQuantity = cart.reduce((sum, item) => sum + item.totalQuantity, 0);
 
-  const toggleWishlist = (productId: string) => {
-    setWishlist(prev => prev.includes(productId) ? prev.filter(id => id !== productId) : [...prev, productId]);
+  const toggleWishlist = (productOrId: string | Product) => {
+    const id = typeof productOrId === 'string' ? productOrId : productOrId.id;
+    setWishlist(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   };
 
-  const toggleCompare = (productId: string) => {
+  const isInWishlist = (productId: string) => {
+    return wishlist.includes(productId);
+  };
+
+  const toggleCompare = (productOrId: string | Product) => {
+    const id = typeof productOrId === 'string' ? productOrId : productOrId.id;
     setCompareList(prev => {
-      if (prev.includes(productId)) {
-        return prev.filter(id => id !== productId);
+      const exists = prev.some(p => p.id === id);
+      if (exists) {
+        return prev.filter(p => p.id !== id);
       }
       if (prev.length >= 4) {
         alert('You can compare a maximum of 4 products at a time.');
         return prev;
       }
-      return [...prev, productId];
+      const prod = typeof productOrId === 'string' ? PRODUCTS.find(p => p.id === id) : productOrId;
+      if (!prod) return prev;
+      return [...prev, prod];
     });
+  };
+
+  const isInCompare = (productId: string) => {
+    return compareList.some(p => p.id === productId);
   };
 
   const clearCompare = () => setCompareList([]);
@@ -233,8 +255,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         cartTotalQuantity,
         wishlist,
         toggleWishlist,
+        isInWishlist,
         compareList,
         toggleCompare,
+        isInCompare,
         clearCompare,
         recentlyViewed,
         addRecentlyViewed,

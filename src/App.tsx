@@ -6,7 +6,6 @@ import { Hero } from './components/Hero';
 import { BrandStoryScroll } from './components/BrandStoryScroll';
 import { CategoryShowcase } from './components/CategoryShowcase';
 import { ProductCard } from './components/ProductCard';
-import { ProductDetailModal } from './components/ProductDetailModal';
 import { ProductDetailPage } from './components/ProductDetailPage';
 import { FabricExplorer } from './components/FabricExplorer';
 import { ManufacturingPipeline } from './components/ManufacturingPipeline';
@@ -23,16 +22,10 @@ import { FloatingCtaMenu } from './components/FloatingCtaMenu';
 import { SeoStructuredData } from './components/SeoStructuredData';
 import { PRODUCTS } from './data/products';
 import { 
-  PhoneCall, 
-  MessageSquare, 
   ChevronDown, 
   Filter, 
   Layers, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Factory, 
   HelpCircle,
-  Download,
   ArrowRight
 } from 'lucide-react';
 
@@ -43,12 +36,10 @@ const MainContent: React.FC = () => {
     selectedCategory, 
     setSelectedCategory, 
     searchQuery, 
-    quickViewProduct, 
-    setQuickViewProduct,
-    setActiveModal
+    quickViewProduct
   } = useCart();
 
-  const [gsmFilter, setGsmFilter] = useState<number>(150);
+  const [gsmFilter, setGsmFilter] = useState<number>(180);
   const [selectedFit, setSelectedFit] = useState<string>('All');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -71,7 +62,7 @@ const MainContent: React.FC = () => {
   const faqs = [
     {
       q: 'What is the Minimum Order Quantity (MOQ) for wholesale orders?',
-      a: 'Our standard MOQ is 100 pieces per style/color for stock fabrics (e.g., 240 GSM tees, 330 GSM fleece sweatshirts). For custom dyed colors or special fabrics, MOQ is 300 to 500 pieces per colorway.'
+      a: 'Our standard MOQ is 24 pieces per style/colorway for stock fabrics (e.g., 240 GSM tees, 330 GSM fleece sweatshirts). For custom dyed colors or special tech pack designs, MOQ is 100 to 200 pieces.'
     },
     {
       q: 'Do you provide GST tax invoices for business accounting?',
@@ -79,7 +70,7 @@ const MainContent: React.FC = () => {
     },
     {
       q: 'Can we inspect samples before placing a bulk manufacturing order?',
-      a: 'Absolutely. We dispatch physical sample swatches or prototype sample garments within 3 to 5 business days so your team can verify handfeel, fit, stitching density, and print quality.'
+      a: 'Absolutely. We dispatch physical sample fabric swatches or prototype garments within 3 to 5 business days so your team can verify handfeel, fit, stitching density, and print quality.'
     },
     {
       q: 'What customization options do you support for private labels?',
@@ -92,15 +83,7 @@ const MainContent: React.FC = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-[#050A1A] text-white relative">
-      
-      {/* Global Grain Texture Overlay for Artistic Flair Theme */}
-      <div 
-        className="fixed inset-0 opacity-[0.035] pointer-events-none z-50" 
-        style={{ 
-          backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" 
-        }} 
-      />
+    <main className="min-h-screen bg-white text-gray-900 relative font-sans">
 
       {/* DEDICATED PRODUCT DETAILS PAGE VIEW */}
       {activeTab === 'product-detail' && (
@@ -114,35 +97,32 @@ const MainContent: React.FC = () => {
       {activeTab === 'home' && (
         <>
           <Hero />
-          
-          {/* High-End Scroll Trigger Video Revealing Brand Story Details */}
+          <CategoryShowcase />
           <BrandStoryScroll />
 
-          <CategoryShowcase />
-
           {/* Featured Wholesale Catalogue Spotlight */}
-          <section className="py-20 px-4 lg:px-8 bg-[#050A1A]">
-            <div className="max-w-7xl mx-auto space-y-10">
+          <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+            <div className="max-w-7xl mx-auto space-y-8">
               
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                  <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059] mb-2">
-                    <Layers className="w-3.5 h-3.5 text-[#C5A059]" /> High-Demand Wholesale Matrix
+                  <div className="inline-flex items-center gap-2 text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059] mb-1">
+                    <Layers className="w-3.5 h-3.5 text-[#C5A059]" /> High-Demand Wholesale Collection
                   </div>
-                  <h2 className="font-serif text-3xl md:text-5xl font-bold text-white">
+                  <h2 className="font-serif text-2xl sm:text-4xl font-normal text-gray-900">
                     Featured Garment Models
                   </h2>
                 </div>
 
-                <div className="flex flex-wrap gap-2 text-xs font-semibold">
+                <div className="flex flex-wrap gap-2 text-xs font-normal">
                   {['All', 'T-Shirts', 'Hoodies', 'Sweatshirts', 'Winter Wear'].map((cat) => (
                     <button
                       key={cat}
-                      onClick={() => setSelectedCategory(cat === 'All' ? null : cat)}
-                      className={`px-4 py-2 rounded-lg transition cursor-pointer text-[10px] uppercase tracking-[0.2em] font-bold ${
+                      onClick={() => setSelectedCategory(cat === 'All' ? null : cat as any)}
+                      className={`px-3.5 py-1.5 rounded-xl transition cursor-pointer text-[10px] font-syne font-normal uppercase tracking-wider ${
                         (cat === 'All' && !selectedCategory) || selectedCategory === cat
-                          ? 'bg-[#C5A059] text-[#050A1A] font-extrabold shadow-lg'
-                          : 'bg-[#0A152E] text-slate-300 hover:text-white border border-white/10'
+                          ? 'bg-[#0F172A] text-white shadow-xs'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
                       }`}
                     >
                       {cat}
@@ -151,11 +131,21 @@ const MainContent: React.FC = () => {
                 </div>
               </div>
 
-              {/* Product Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Product Grid - 2 Columns on Mobile! */}
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                 {filteredProducts.slice(0, 8).map((p) => (
                   <ProductCard key={p.id} product={p} />
                 ))}
+              </div>
+
+              <div className="text-center pt-4">
+                <button
+                  onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
+                  className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-syne font-normal text-xs uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition cursor-pointer inline-flex items-center gap-2"
+                >
+                  <span>Explore Full Wholesale Catalogue ({PRODUCTS.length} Models)</span>
+                  <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                </button>
               </div>
 
             </div>
@@ -169,32 +159,32 @@ const MainContent: React.FC = () => {
           <PrivateLabelRoadmap />
 
           {/* FAQ Section */}
-          <section className="py-20 px-4 lg:px-8 bg-[#030712] border-t border-white/10">
-            <div className="max-w-4xl mx-auto space-y-10">
-              <div className="text-center space-y-3">
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">
-                  <HelpCircle className="w-3.5 h-3.5 text-[#C5A059]" /> B2B Knowledge Hub
+          <section className="py-14 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200">
+            <div className="max-w-4xl mx-auto space-y-8">
+              <div className="text-center space-y-2">
+                <div className="inline-flex items-center gap-2 text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059]">
+                  <HelpCircle className="w-4 h-4 text-[#C5A059]" /> B2B Knowledge Hub
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl font-bold text-white">
+                <h2 className="font-serif text-2xl sm:text-3xl font-normal text-gray-900">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-xs md:text-sm text-slate-400">
+                <p className="text-xs text-gray-600">
                   Clear answers regarding Fortune Clothing Company’s wholesale terms, MOQs, custom branding, and Ludhiana dispatch.
                 </p>
               </div>
 
               <div className="space-y-3">
                 {faqs.map((faq, idx) => (
-                  <div key={idx} className="bg-[#0A152E] border border-white/10 rounded-2xl overflow-hidden">
+                  <div key={idx} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-2xs">
                     <button
                       onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                      className="w-full text-left p-5 flex items-center justify-between gap-4 font-serif font-bold text-sm md:text-base text-white hover:text-[#C5A059] transition"
+                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-serif font-normal text-sm sm:text-base text-gray-900 hover:text-[#0F172A] transition cursor-pointer"
                     >
                       <span>{faq.q}</span>
                       <ChevronDown className={`w-5 h-5 text-[#C5A059] transition-transform ${openFaq === idx ? 'rotate-180' : ''}`} />
                     </button>
                     {openFaq === idx && (
-                      <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/10">
+                      <div className="px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 font-sans">
                         {faq.a}
                       </div>
                     )}
@@ -208,34 +198,34 @@ const MainContent: React.FC = () => {
 
       {/* CATALOGUE PAGE VIEW */}
       {activeTab === 'catalogue' && (
-        <section className="py-12 px-4 lg:px-8">
-          <div className="max-w-7xl mx-auto space-y-8">
+        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
             
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0A152E] border border-white/10 p-6 rounded-3xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gray-50 border border-gray-200 p-5 sm:p-6 rounded-3xl">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">
+                <span className="text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059]">
                   Factory Direct Catalogue
                 </span>
-                <h1 className="font-serif text-2xl md:text-4xl font-bold text-white mt-1">
-                  {selectedCategory ? `${selectedCategory} Wholesale` : 'Full Wholesale Garment Matrix'}
+                <h1 className="font-serif text-2xl sm:text-4xl font-normal text-gray-900 mt-1">
+                  {selectedCategory ? `${selectedCategory} Wholesale Collection` : 'Full Garment Matrix'}
                 </h1>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-gray-600 mt-1">
                   Showing {filteredProducts.length} verified B2B garment models. Select sizes & colors to generate a WhatsApp quotation.
                 </p>
               </div>
 
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="text-xs font-bold text-[#C5A059] hover:underline uppercase tracking-wider text-[10px]"
+                className="text-xs font-syne font-normal text-[#0F172A] hover:text-[#C5A059] uppercase tracking-wider text-[10px] cursor-pointer"
               >
-                Reset Category Filters
+                Reset All Category Filters
               </button>
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-[#0A152E] border border-white/10 p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-xs">
-              <div className="flex items-center gap-4">
-                <span className="font-bold text-slate-300 flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
+            <div className="bg-gray-50 border border-gray-200 p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-xs">
+              <div className="flex items-center gap-3">
+                <span className="font-syne font-normal text-gray-800 flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
                   <Filter className="w-4 h-4 text-[#C5A059]" /> Min GSM Filter:
                 </span>
                 <input
@@ -245,19 +235,19 @@ const MainContent: React.FC = () => {
                   step="20"
                   value={gsmFilter}
                   onChange={(e) => setGsmFilter(parseInt(e.target.value))}
-                  className="accent-[#C5A059] bg-slate-800"
+                  className="accent-[#0F172A] bg-gray-200"
                 />
-                <span className="font-mono text-[#C5A059] font-bold">{gsmFilter}+ GSM</span>
+                <span className="font-mono text-[#0F172A] font-normal">{gsmFilter}+ GSM</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-slate-400 uppercase text-[10px] tracking-wider">Fit Silhouette:</span>
+                <span className="text-gray-500 uppercase text-[10px] font-syne font-normal tracking-wider">Fit Silhouette:</span>
                 {['All', 'Oversized', 'Classic', 'Tapered'].map(fit => (
                   <button
                     key={fit}
                     onClick={() => setSelectedFit(fit)}
-                    className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider transition ${
-                      selectedFit === fit ? 'bg-[#C5A059] text-[#050A1A]' : 'bg-[#121c33] text-slate-400 hover:text-white'
+                    className={`px-3 py-1 rounded-lg text-[10px] font-syne font-normal uppercase tracking-wider transition cursor-pointer ${
+                      selectedFit === fit ? 'bg-[#0F172A] text-white' : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200'
                     }`}
                   >
                     {fit}
@@ -266,8 +256,8 @@ const MainContent: React.FC = () => {
               </div>
             </div>
 
-            {/* Catalogue Product Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Catalogue Product Grid - 2 Columns on Mobile! */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               {filteredProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -279,7 +269,7 @@ const MainContent: React.FC = () => {
 
       {/* PRIVATE LABEL PAGE VIEW */}
       {activeTab === 'privatelabel' && (
-        <section className="py-12">
+        <section className="py-8 bg-white">
           <PrivateLabelRoadmap />
           <FabricExplorer />
         </section>
@@ -287,7 +277,7 @@ const MainContent: React.FC = () => {
 
       {/* FACTORY INFRASTRUCTURE VIEW */}
       {activeTab === 'factory' && (
-        <section className="py-12">
+        <section className="py-8 bg-white">
           <ManufacturingPipeline />
           <QualityHotspots />
         </section>
@@ -295,14 +285,14 @@ const MainContent: React.FC = () => {
 
       {/* B2B CALCULATOR VIEW */}
       {activeTab === 'calculator' && (
-        <section className="py-12">
+        <section className="py-8 bg-white">
           <WholesaleCalculators />
         </section>
       )}
 
       {/* ORDER TRACKER VIEW */}
       {activeTab === 'tracker' && (
-        <section className="py-12">
+        <section className="py-8 bg-white">
           <LiveEnquiryTracker />
         </section>
       )}
@@ -326,7 +316,7 @@ const MainContent: React.FC = () => {
 export default function App() {
   return (
     <CartProvider>
-      <div className="min-h-screen bg-[#050A18] text-white flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between font-sans">
         <Header />
         <MainContent />
         <Footer />

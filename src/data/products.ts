@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: '100% Super Combed Compact Cotton',
     gsm: 240,
-    moq: 100,
+    moq: 24,
     blend: '100% Cotton Bio-Washed',
     availableSizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
     availableColors: [
@@ -52,9 +52,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '3 - 5 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Tier 1 Wholesale', discountPct: 'Standard Wholesale' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '12% Extra Margin' },
-      { minQty: 2000, maxQty: 'Bulk Custom', pricePerPieceEst: 'Direct Factory Rate', discountPct: 'Maximum B2B Rebate' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Tier 1 Wholesale', discountPct: 'Standard Wholesale' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '12% Extra Margin' },
+      { minQty: 500, maxQty: 'Bulk Custom', pricePerPieceEst: 'Direct Factory Rate', discountPct: 'Maximum B2B Rebate' }
     ],
     isFeatured: true,
     isNew: true,
@@ -76,7 +76,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: '80% Premium Cotton, 20% Anti-Pilling Poly Fleece',
     gsm: 330,
-    moq: 100,
+    moq: 24,
     blend: 'Cotton-Rich Heavyweight Fleece',
     availableSizes: ['M', 'L', 'XL', '2XL', '3XL', '4XL'],
     availableColors: [
@@ -100,9 +100,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '4 - 7 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Tier 1 Rate', discountPct: 'Wholesale Base' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '15% Margin Boost' },
-      { minQty: 2000, maxQty: 'Factory Contract', pricePerPieceEst: 'Direct Mill Contract', discountPct: 'Top Volume Discount' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Tier 1 Rate', discountPct: 'Wholesale Base' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '15% Margin Boost' },
+      { minQty: 500, maxQty: 'Factory Contract', pricePerPieceEst: 'Direct Mill Contract', discountPct: 'Top Volume Discount' }
     ],
     isFeatured: true,
     bestFor: ['Winter Collections', 'Corporate Gifting', 'Export Wholesale'],
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: '100% Premium Cotton French Terry or Brushed Fleece',
     gsm: 380,
-    moq: 100,
+    moq: 24,
     blend: 'Ultra Heavy Cotton',
     availableSizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
     availableColors: [
@@ -147,9 +147,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '5 - 7 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Wholesale Tier 1', discountPct: 'B2B Standard' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Wholesale Tier 2', discountPct: '18% Bulk Rebate' },
-      { minQty: 2000, maxQty: 'Factory Contract', pricePerPieceEst: 'Master Dealer Rate', discountPct: 'Max B2B Margin' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Wholesale Tier 1', discountPct: 'B2B Standard' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Wholesale Tier 2', discountPct: '18% Bulk Rebate' },
+      { minQty: 500, maxQty: 'Factory Contract', pricePerPieceEst: 'Master Dealer Rate', discountPct: 'Max B2B Margin' }
     ],
     isFeatured: true,
     isNew: true,
@@ -171,7 +171,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: 'High-Density Matt Water-Repellent Shell + Synthetic Insulation',
     gsm: 210,
-    moq: 150,
+    moq: 24,
     blend: '100% Nylon/Poly Weather Shield',
     availableSizes: ['M', 'L', 'XL', '2XL', '3XL'],
     availableColors: [
@@ -195,9 +195,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '7 - 10 Days',
     wholesaleTiers: [
-      { minQty: 150, maxQty: 499, pricePerPieceEst: 'Standard B2B', discountPct: 'Base Rate' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Volume Dealer', discountPct: '15% Volume Rebate' },
-      { minQty: 2000, maxQty: 'Direct Mill Contract', pricePerPieceEst: 'Factory Door Rate', discountPct: 'Max Factory Savings' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Standard B2B', discountPct: 'Base Rate' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Volume Dealer', discountPct: '15% Volume Rebate' },
+      { minQty: 500, maxQty: 'Direct Mill Contract', pricePerPieceEst: 'Factory Door Rate', discountPct: 'Max Factory Savings' }
     ],
     isFeatured: true,
     bestFor: ['Winter Wholesale Markets', 'Corporate Outwear', 'Retail Store Networks'],
@@ -218,7 +218,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: '75% Combed Cotton, 20% Poly, 5% Lycra',
     gsm: 290,
-    moq: 100,
+    moq: 24,
     blend: '4-Way Stretch Performance Knit',
     availableSizes: ['S', 'M', 'L', 'XL', '2XL'],
     availableColors: [
@@ -241,9 +241,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '4 - 6 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'B2B Base', discountPct: 'Standard' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'B2B Wholesale', discountPct: '14% Rebate' },
-      { minQty: 2000, maxQty: 'Bulk Tier', pricePerPieceEst: 'Direct Factory Rate', discountPct: 'Top Margin' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'B2B Base', discountPct: 'Standard' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'B2B Wholesale', discountPct: '14% Rebate' },
+      { minQty: 500, maxQty: 'Bulk Tier', pricePerPieceEst: 'Direct Factory Rate', discountPct: 'Top Margin' }
     ],
     isFeatured: true,
     bestFor: ['Athleisure Brands', 'Gym Chains', 'Retail Outlets'],
@@ -264,7 +264,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: '100% Combed Bio-washed Cotton',
     gsm: 240,
-    moq: 150,
+    moq: 24,
     blend: 'Pure Breathable Cotton',
     availableSizes: ['M', 'L', 'XL', '2XL', '3XL'],
     availableColors: [
@@ -285,9 +285,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '3 - 5 Days',
     wholesaleTiers: [
-      { minQty: 150, maxQty: 499, pricePerPieceEst: 'Tier 1 Rate', discountPct: 'Standard' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '10% Rebate' },
-      { minQty: 2000, maxQty: 'Custom Order', pricePerPieceEst: 'Factory Rate', discountPct: 'Max Rebate' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Tier 1 Rate', discountPct: 'Standard' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Tier 2 Bulk', discountPct: '10% Rebate' },
+      { minQty: 500, maxQty: 'Custom Order', pricePerPieceEst: 'Factory Rate', discountPct: 'Max Rebate' }
     ],
     isFeatured: false,
     bestFor: ['Mass Wholesale Distributors', 'Daily Wear Retailers'],
@@ -308,7 +308,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: 'Micro-Poly Interlock with Moisture Wicking Technology',
     gsm: 280,
-    moq: 100,
+    moq: 24,
     blend: '90% Poly, 10% Spandex Active Stretch',
     availableSizes: ['S', 'M', 'L', 'XL', '2XL'],
     availableColors: [
@@ -330,9 +330,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '5 - 7 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'B2B Track Set Rate 1', discountPct: 'Base Rate' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'B2B Track Set Rate 2', discountPct: '16% Rebate' },
-      { minQty: 2000, maxQty: 'Factory Contract', pricePerPieceEst: 'Direct Production Contract', discountPct: 'Top Value' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'B2B Track Set Rate 1', discountPct: 'Base Rate' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'B2B Track Set Rate 2', discountPct: '16% Rebate' },
+      { minQty: 500, maxQty: 'Factory Contract', pricePerPieceEst: 'Direct Production Contract', discountPct: 'Top Value' }
     ],
     isFeatured: true,
     isNew: true,
@@ -354,7 +354,7 @@ export const PRODUCTS: Product[] = [
     ],
     fabric: 'Premium Ludhiana Knitting Mill Heavy Wool-Poly Fleece Blend',
     gsm: 420,
-    moq: 100,
+    moq: 24,
     blend: '420 GSM Ultra Insulation',
     availableSizes: ['M', 'L', 'XL', '2XL', '3XL', '4XL'],
     availableColors: [
@@ -376,9 +376,9 @@ export const PRODUCTS: Product[] = [
     ],
     dispatchDays: '5 - 8 Days',
     wholesaleTiers: [
-      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Winter Tier 1', discountPct: 'Standard B2B' },
-      { minQty: 500, maxQty: 1999, pricePerPieceEst: 'Winter Tier 2', discountPct: '15% Volume Discount' },
-      { minQty: 2000, maxQty: 'Bulk Contract', pricePerPieceEst: 'Direct Mill Contract Rate', discountPct: 'Max B2B Rebate' }
+      { minQty: 24, maxQty: 99, pricePerPieceEst: 'Winter Tier 1', discountPct: 'Standard B2B' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: 'Winter Tier 2', discountPct: '15% Volume Discount' },
+      { minQty: 500, maxQty: 'Bulk Contract', pricePerPieceEst: 'Direct Mill Contract Rate', discountPct: 'Max B2B Rebate' }
     ],
     isFeatured: true,
     bestFor: ['North India & Hill Station Retailers', 'Export Wholesalers', 'Corporate Winter Distribution'],

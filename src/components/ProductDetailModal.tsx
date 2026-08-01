@@ -4,18 +4,9 @@ import { useCart } from '../context/CartContext';
 import { 
   X, 
   ShoppingBag, 
-  Heart, 
-  Scale, 
-  ShieldCheck, 
   Check, 
-  Sparkles, 
   PhoneCall, 
-  Tag, 
-  Info,
-  Ruler,
-  Layers,
-  Award,
-  Truck
+  Ruler
 } from 'lucide-react';
 
 interface ProductDetailModalProps {
@@ -23,8 +14,8 @@ interface ProductDetailModalProps {
   onClose: () => void;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
-  const { addToCart, wishlist, toggleWishlist, compareList, toggleCompare, setIsEnquiryModalOpen } = useCart();
+export const ProductDetailModal: React.FC = ({ product, onClose }) => {
+  const { addToCart, setIsEnquiryModalOpen } = useCart();
 
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [selectedColor, setSelectedColor] = useState<ProductColor>(product.availableColors[0]);
@@ -39,12 +30,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
     return initial;
   });
 
-  const [customNotes, setCustomNotes] = useState('');
+  const [customNotes] = useState('');
   const [selectedCustomizations, setSelectedCustomizations] = useState<string[]>([]);
 
   const totalQty = (Object.values(sizeQuantities) as number[]).reduce((a: number, b: number) => a + (b || 0), 0);
-  const isWishlisted = wishlist.includes(product.id);
-  const isCompared = compareList.includes(product.id);
 
   const handleSizeChange = (sz: string, val: number) => {
     setSizeQuantities(prev => ({
@@ -77,16 +66,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl bg-[#091126] border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden my-8 text-white max-h-[90vh] flex flex-col">
+      <div className="relative w-full max-w-5xl bg-[#091126] border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden my-8 text-white max-h-[90vh] flex flex-col font-sans">
         
         {/* Header Bar */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#0D1836] border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] bg-[#D4AF37]/10 px-2.5 py-1 rounded-md border border-[#D4AF37]/30">
+            <span className="text-xs font-normal uppercase tracking-wider text-[#D4AF37] bg-[#D4AF37]/10 px-2.5 py-1 rounded-md border border-[#D4AF37]/30 font-mono">
               {product.code}
             </span>
-            <span className="text-xs text-slate-400">
-              Category: <strong className="text-slate-200">{product.category}</strong>
+            <span className="text-xs text-slate-400 font-normal">
+              Category: <strong className="text-slate-200 font-normal">{product.category}</strong>
             </span>
           </div>
 
@@ -99,7 +88,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
         </div>
 
         {/* Modal Scroll Body */}
-        <div className="p-6 md:p-8 overflow-y-auto space-y-8 flex-1">
+        <div className="p-6 md:p-8 overflow-y-auto space-y-8 flex-1 font-normal">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
@@ -112,10 +101,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                  <span className="bg-slate-950/80 backdrop-blur-md border border-slate-700 text-[#D4AF37] text-xs font-extrabold px-3 py-1 rounded-md uppercase">
+                  <span className="bg-slate-950/80 backdrop-blur-md border border-slate-700 text-[#D4AF37] text-xs font-normal px-3 py-1 rounded-md uppercase">
                     {product.gsm} GSM Fabric
                   </span>
-                  <span className="bg-amber-500 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-md uppercase">
+                  <span className="bg-amber-500 text-slate-950 text-xs font-normal px-2.5 py-0.5 rounded-md uppercase">
                     MOQ {product.moq} Pcs
                   </span>
                 </div>
@@ -137,22 +126,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
 
               {/* Specs Grid */}
-              <div className="bg-[#0D1836] border border-slate-800 rounded-xl p-4 text-xs space-y-2">
+              <div className="bg-[#0D1836] border border-slate-800 rounded-xl p-4 text-xs space-y-2 font-normal">
                 <div className="flex justify-between py-1 border-b border-slate-800">
                   <span className="text-slate-400">Fabric Composition:</span>
-                  <span className="font-semibold text-slate-200">{product.fabric}</span>
+                  <span className="font-normal text-slate-200">{product.fabric}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-800">
                   <span className="text-slate-400">Fit Type:</span>
-                  <span className="font-semibold text-slate-200">{product.fitType}</span>
+                  <span className="font-normal text-slate-200">{product.fitType}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-800">
                   <span className="text-slate-400">Shrinkage Rate:</span>
-                  <span className="font-semibold text-emerald-400">{product.shrinkageRate}</span>
+                  <span className="font-normal text-emerald-400">{product.shrinkageRate}</span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">Washing Care:</span>
-                  <span className="font-semibold text-slate-200">{product.washingCare}</span>
+                  <span className="font-normal text-slate-200">{product.washingCare}</span>
                 </div>
               </div>
             </div>
@@ -161,16 +150,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
             <div className="lg:col-span-7 space-y-6">
               
               <div>
-                <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">
+                <h2 className="font-serif text-2xl md:text-3xl font-normal text-white">
                   {product.name}
                 </h2>
-                <p className="text-sm font-semibold text-[#D4AF37] mt-1">{product.subtitle}</p>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed">{product.description}</p>
+                <p className="text-sm font-normal text-[#D4AF37] mt-1">{product.subtitle}</p>
+                <p className="text-xs text-slate-300 mt-2 leading-relaxed font-normal">{product.description}</p>
               </div>
 
               {/* Color Selection */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                <label className="block text-xs font-normal uppercase tracking-wider text-slate-300 mb-2">
                   1. Select Garment Color ({product.availableColors.length} Options)
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -178,7 +167,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     <button
                       key={idx}
                       onClick={() => setSelectedColor(col)}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition ${
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-normal transition ${
                         selectedColor.name === col.name
                           ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-white shadow-lg'
                           : 'border-slate-800 bg-[#0D1836] text-slate-400 hover:border-slate-600'
@@ -194,10 +183,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               {/* Size Quantity Matrix */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                  <label className="text-xs font-normal uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                     <Ruler className="w-3.5 h-3.5 text-[#D4AF37]" /> 2. Enter Quantity Per Size (Pieces)
                   </label>
-                  <span className="text-xs font-bold text-emerald-400">
+                  <span className="text-xs font-normal text-emerald-400">
                     Total: {totalQty} Pcs {totalQty < product.moq ? `(MOQ is ${product.moq})` : '✓ MOQ Met'}
                   </span>
                 </div>
@@ -205,13 +194,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {product.availableSizes.map(sz => (
                     <div key={sz} className="bg-[#0D1836] border border-slate-800 rounded-xl p-2 text-center">
-                      <span className="text-xs font-bold text-slate-300 block mb-1">{sz}</span>
+                      <span className="text-xs font-normal text-slate-300 block mb-1">{sz}</span>
                       <input
                         type="number"
                         min="0"
                         value={sizeQuantities[sz] || 0}
                         onChange={(e) => handleSizeChange(sz, parseInt(e.target.value) || 0)}
-                        className="w-full bg-slate-950 border border-slate-700 rounded-lg py-1 px-1 text-center text-xs text-white font-mono font-bold focus:border-[#D4AF37] focus:outline-none"
+                        className="w-full bg-slate-950 border border-slate-700 rounded-lg py-1 px-1 text-center text-xs text-white font-mono font-normal focus:border-[#D4AF37] focus:outline-none"
                       />
                     </div>
                   ))}
@@ -220,7 +209,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
               {/* Customization Options */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                <label className="block text-xs font-normal uppercase tracking-wider text-slate-300 mb-2">
                   3. Select Customization & Private Labeling (Optional)
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -231,7 +220,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                         key={idx}
                         type="button"
                         onClick={() => toggleCustomization(opt)}
-                        className={`text-left p-2.5 rounded-xl border text-xs font-medium transition flex items-center gap-2 ${
+                        className={`text-left p-2.5 rounded-xl border text-xs font-normal transition flex items-center gap-2 ${
                           isSelected
                             ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-white'
                             : 'border-slate-800 bg-[#0D1836] text-slate-400 hover:border-slate-700'
@@ -249,13 +238,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
               {/* Tiered Wholesale Rates Table */}
               <div className="bg-[#0D1836] border border-slate-800 rounded-2xl p-4 space-y-2">
-                <span className="text-xs font-bold uppercase text-[#D4AF37] block">
+                <span className="text-xs font-normal uppercase text-[#D4AF37] block">
                   Tiered Wholesale B2B Pricing Structure
                 </span>
                 <div className="grid grid-cols-3 gap-2 text-center text-xs">
                   {product.wholesaleTiers.map((tier, idx) => (
-                    <div key={idx} className="bg-slate-900/80 border border-slate-800 p-2 rounded-xl">
-                      <div className="font-mono font-bold text-amber-300">{tier.minQty} - {tier.maxQty} Pcs</div>
+                    <div key={idx} className="bg-slate-900/80 border border-slate-800 p-2 rounded-xl font-normal">
+                      <div className="font-mono font-normal text-amber-300">{tier.minQty} - {tier.maxQty} Pcs</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{tier.discountPct}</div>
                     </div>
                   ))}
@@ -266,7 +255,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               <div className="pt-2 flex flex-wrap gap-3">
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-gradient-to-r from-amber-500 via-[#D4AF37] to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs py-3.5 px-6 rounded-xl shadow-xl flex items-center justify-center gap-2 cursor-pointer transition"
+                  className="flex-1 bg-gradient-to-r from-amber-500 via-[#D4AF37] to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-normal text-xs py-3.5 px-6 rounded-xl shadow-xl flex items-center justify-center gap-2 cursor-pointer transition"
                 >
                   <ShoppingBag className="w-4 h-4" /> Add Total ({totalQty} Pcs) To Enquiry Cart
                 </button>
@@ -276,7 +265,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     handleAddToCart();
                     setIsEnquiryModalOpen(true);
                   }}
-                  className="bg-[#25D366] hover:bg-emerald-500 text-slate-950 font-bold text-xs py-3.5 px-5 rounded-xl flex items-center justify-center gap-1.5 transition"
+                  className="bg-[#25D366] hover:bg-emerald-500 text-slate-950 font-normal text-xs py-3.5 px-5 rounded-xl flex items-center justify-center gap-1.5 transition cursor-pointer"
                 >
                   <PhoneCall className="w-4 h-4" /> Direct WhatsApp Quote
                 </button>

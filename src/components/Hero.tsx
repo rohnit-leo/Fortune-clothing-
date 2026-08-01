@@ -1,132 +1,172 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { 
-  Factory, 
-  ShieldCheck, 
-  Truck, 
   ArrowRight, 
-  PhoneCall, 
-  Download, 
+  MessageCircle, 
   CheckCircle2, 
-  Layers, 
-  Award, 
+  ChevronRight,
+  Factory,
   Sparkles,
-  Zap,
-  Star
+  PackageCheck,
+  ShieldCheck
 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { setActiveTab, setActiveModal } = useCart();
+  const { setActiveTab, setSelectedCategory, setActiveModal } = useCart();
+
+  const HERO_IMAGE_PRIMARY = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.02.39%20AM.jpeg";
+  const HERO_IMAGE_SECONDARY = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.04.22%20AM.jpeg";
 
   return (
-    <section className="relative bg-[#050A1A] text-white pt-12 pb-24 px-4 lg:px-8 border-b border-white/10 overflow-hidden">
+    <section className="relative bg-white pt-4 pb-10 sm:pb-14 font-sans overflow-hidden">
       
-      {/* Background Decorative Layered Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-tr from-[#C5A059]/10 via-[#C5A059]/20 to-indigo-900/10 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:36px_36px] opacity-10 pointer-events-none" />
+      {/* Background Soft Glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-amber-50 rounded-full blur-3xl opacity-40 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-100 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
-        {/* Top Floating Trust Pill */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2.5 bg-[#0A152E] border border-[#C5A059]/40 px-4 py-2 rounded-full shadow-2xl backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.25em]">
-              Wholesale Only • Ludhiana Direct • No Retail Sales
-            </span>
-          </div>
-        </div>
-
-        {/* Main Headline & Hero Story - Artistic Flair Editorial Typography */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
-            Global Standard Garment Manufacturing{' '}
-            <span className="bg-gradient-to-r from-amber-100 via-[#C5A059] to-amber-500 bg-clip-text text-transparent italic">
-              Forged in Ludhiana.
-            </span>
-          </h1>
-
-          <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed font-light">
-            Empowering international apparel labels, wholesale distributors, retail chains, and e-commerce brands with high-capacity textile manufacturing, custom private labeling, and factory-direct dispatch.
-          </p>
-
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <button
-              onClick={() => setActiveTab('catalogue')}
-              className="bg-[#C5A059] hover:bg-white text-[#050A1A] font-bold text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-lg shadow-2xl flex items-center gap-2 transition cursor-pointer"
-            >
-              <Layers className="w-4 h-4 text-[#050A1A]" /> Explore Wholesale Matrix
-            </button>
-
-            <button
-              onClick={() => setActiveModal('dealer')}
-              className="bg-white/5 hover:bg-white/10 text-white font-bold text-xs tracking-[0.2em] uppercase px-7 py-4 rounded-lg border border-white/20 hover:border-[#C5A059] shadow-lg flex items-center gap-2 transition cursor-pointer"
-            >
-              Become B2B Partner <ArrowRight className="w-4 h-4 text-[#C5A059]" />
-            </button>
-
-            <a
-              href="https://wa.me/917528802003?text=Hello%20Fortune%20Clothing%2C%20I%20want%20to%20request%20a%20bulk%20wholesale%20quotation."
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] font-bold text-xs tracking-wider uppercase px-6 py-4 rounded-lg flex items-center gap-2 transition"
-            >
-              <PhoneCall className="w-4 h-4" /> WhatsApp Quote
-            </a>
-          </div>
-
-          {/* Quick Value Highlights */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-[11px] text-slate-300 uppercase tracking-widest font-mono">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> GSTIN Invoice Provided
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Pan India Freight
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Custom OEM Packaging
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Strict Quality ISO Protocol
-            </span>
-          </div>
-
-        </div>
-
-        {/* Feature Grid Banner Overlay */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        {/* Redesigned Modern B2B Hero Box */}
+        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xs relative overflow-hidden">
           
-          <div className="bg-[#0A152E] border border-white/10 p-5 rounded-2xl shadow-xl text-center group hover:border-[#C5A059]/60 transition">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-[#C5A059]/10 border border-[#C5A059]/30 flex items-center justify-center text-[#C5A059] mb-2 group-hover:scale-110 transition">
-              <Factory className="w-5 h-5" />
-            </div>
-            <div className="font-serif font-bold text-2xl text-white">25,000+</div>
-            <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1">Garments Daily Output</p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column: Factory Overview & Value Proposition */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-white border border-gray-200 px-3.5 py-1.5 rounded-full shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[11px] font-syne font-normal uppercase tracking-widest text-[#0F172A]">
+                  Ludhiana Direct Hosiery Mill • 240-420 GSM
+                </span>
+              </div>
 
-          <div className="bg-[#0A152E] border border-white/10 p-5 rounded-2xl shadow-xl text-center group hover:border-[#C5A059]/60 transition">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-2 group-hover:scale-110 transition">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div className="font-serif font-bold text-2xl text-white">100%</div>
-            <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1">Factory Direct Rates</p>
-          </div>
+              {/* Main Headline */}
+              <div className="space-y-3">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-gray-900 leading-[1.12]">
+                  Direct Factory Apparel Manufacturing & Bulk Wholesale
+                </h1>
+                <p className="text-sm sm:text-base text-gray-600 max-w-2xl font-normal leading-relaxed">
+                  Precision knitwear sourcing for fashion labels, retail chains, and private brands. Manufactured in Ludhiana with bio-washed combed cotton, 330+ GSM heavy fleece, and AQL 2.5 export standard quality.
+                </p>
+              </div>
 
-          <div className="bg-[#0A152E] border border-white/10 p-5 rounded-2xl shadow-xl text-center group hover:border-[#C5A059]/60 transition">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-2 group-hover:scale-110 transition">
-              <Truck className="w-5 h-5" />
-            </div>
-            <div className="font-serif font-bold text-2xl text-white">3 - 5 Days</div>
-            <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1">Pan India Dispatch</p>
-          </div>
+              {/* Trust Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs font-normal text-gray-700">
+                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span>MOQ 24 Pcs / Style</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
+                  <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span>100% GST Tax Credit</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
+                  <PackageCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span>Doorstep PAN India</span>
+                </div>
+              </div>
 
-          <div className="bg-[#0A152E] border border-white/10 p-5 rounded-2xl shadow-xl text-center group hover:border-[#C5A059]/60 transition">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-2 group-hover:scale-110 transition">
-              <Award className="w-5 h-5" />
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
+                  className="bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs sm:text-sm font-syne font-normal uppercase tracking-widest px-6 py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 group active:scale-95"
+                >
+                  <span>Explore B2B Catalogue</span>
+                  <ArrowRight className="w-4 h-4 text-[#C5A059] group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <a
+                  href="https://wa.me/917528802003"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-[#25D366] hover:bg-emerald-600 text-white text-xs sm:text-sm font-syne font-normal uppercase tracking-widest px-5 py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 active:scale-95"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>WhatsApp Quote</span>
+                </a>
+
+                <button
+                  onClick={() => setActiveModal('sample')}
+                  className="bg-white hover:bg-gray-100 text-gray-800 border border-gray-300 text-xs sm:text-sm font-syne font-normal uppercase tracking-wider px-5 py-3.5 rounded-xl transition cursor-pointer"
+                >
+                  Request Swatches
+                </button>
+              </div>
+
+              {/* Manufacturing Capacity Indicators */}
+              <div className="grid grid-cols-3 gap-4 pt-5 border-t border-gray-200 text-left">
+                <div>
+                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">15,000+</div>
+                  <div className="text-[11px] text-gray-500 font-normal">Daily Garment Output</div>
+                </div>
+                <div>
+                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">240-420</div>
+                  <div className="text-[11px] text-gray-500 font-normal">GSM Heavy Knits</div>
+                </div>
+                <div>
+                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">500+</div>
+                  <div className="text-[11px] text-gray-500 font-normal">Active Brand Clients</div>
+                </div>
+              </div>
+
             </div>
-            <div className="font-serif font-bold text-2xl text-white">8 Lines</div>
-            <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1">Product Categories</p>
+
+            {/* Right Column: High-End Fashion & Garment Showcase */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-sm lg:max-w-none">
+                
+                {/* Primary Card */}
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white group">
+                  <img 
+                    src={HERO_IMAGE_PRIMARY} 
+                    alt="Imperial Heavyweight Oversized Tee" 
+                    className="w-full h-[340px] sm:h-[420px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  />
+                  
+                  {/* Floating Garment Tag */}
+                  <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-gray-200 shadow-md flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono text-[#C5A059] font-normal block uppercase">
+                        FCC-TS-240
+                      </span>
+                      <h3 className="font-serif font-normal text-sm text-gray-900">
+                        Heavyweight Oversized Tee
+                      </h3>
+                      <p className="text-[11px] text-gray-500 font-normal">
+                        240 GSM • 100% Combed Cotton
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => { setActiveTab('catalogue'); setSelectedCategory('T-Shirts'); }}
+                      className="bg-[#0F172A] text-white p-2 rounded-lg hover:bg-[#C5A059] hover:text-[#0F172A] transition cursor-pointer"
+                      title="View Category"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Secondary Floating Stock Badge */}
+                <div className="hidden sm:flex absolute -top-3 -left-5 bg-white p-2.5 rounded-2xl shadow-lg border border-gray-200 items-center gap-3 max-w-xs">
+                  <img 
+                    src={HERO_IMAGE_SECONDARY} 
+                    alt="330 GSM Fleece Hoodie" 
+                    className="w-12 h-12 object-cover rounded-xl border border-gray-200"
+                  />
+                  <div className="text-left">
+                    <span className="text-[9px] font-syne font-normal uppercase text-[#C5A059]">WHOLESALE STOCK</span>
+                    <div className="text-xs font-normal text-gray-900 font-serif">330 GSM Fleece</div>
+                    <div className="text-[10px] text-emerald-600 font-normal">Mill Ready Stock</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
         </div>

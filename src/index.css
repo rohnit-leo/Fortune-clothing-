@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
 @layer utilities {
-  .bg-artistic-dark {
-    background-color: #050A1A;
+  .bg-shopify-white {
+    background-color: #FFFFFF;
   }
-  .bg-artistic-card {
-    background-color: #0A152E;
+  .bg-shopify-gray {
+    background-color: #F8F9FA;
   }
-  .bg-artistic-panel {
-    background-color: #0E172A;
+  .bg-shopify-card {
+    background-color: #FFFFFF;
   }
-  .bg-artistic-gold {
+  .bg-navy-accent {
+    background-color: #0F172A;
+  }
+  .text-navy-accent {
+    color: #0F172A;
+  }
+  .border-navy-accent {
+    border-color: #0F172A;
+  }
+  .bg-gold-accent {
     background-color: #C5A059;
   }
-  .text-artistic-gold {
+  .text-gold-accent {
     color: #C5A059;
   }
-  .border-artistic-gold {
+  .border-gold-accent {
     border-color: #C5A059;
   }
   .font-cinzel {
@@ -30,10 +39,10 @@
   }
 }
 
-/* Custom font styling and scrollbar */
+/* Custom light theme styling and scrollbar */
 body {
-  background-color: #050A1A;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #111827;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
@@ -43,16 +52,24 @@ h1, h2, h3, h4, .font-serif {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050A1A;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E2942;
-  border-radius: 4px;
+  background: #CBD5E1;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C5A059;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

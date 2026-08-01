@@ -1,157 +1,115 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { X, Send, Download, Building, MapPin, PhoneCall, CheckCircle2 } from 'lucide-react';
+import { X, FileText, PhoneCall, Check } from 'lucide-react';
 
 export const QuickForms: React.FC = () => {
   const { activeModal, setActiveModal } = useCart();
-
-  const [name, setName] = useState('');
-  const [company, setCompany] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  if (!activeModal) return null;
+  const [form, setForm] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: '',
+    city: ''
+  });
 
-  const handleQuickSubmit = (e: React.FormEvent) => {
+  if (!activeModal || (activeModal !== 'sample' && activeModal !== 'callback')) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappNum = '917528802003';
-    let message = `*B2B REQUEST: ${activeModal.toUpperCase()}*\n`;
-    message += `• Name: ${name}\n`;
-    message += `• Company: ${company}\n`;
-    message += `• Phone/WhatsApp: ${phone}\n`;
-    message += `• Email: ${email}\n`;
-    if (city) message += `• City: ${city}\n`;
-    if (notes) message += `• Message: ${notes}\n`;
-
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${whatsappNum}?text=${encoded}`, '_blank');
-
     setSubmitted(true);
     setTimeout(() => {
-      setActiveModal(null);
       setSubmitted(false);
-    }, 1500);
-  };
-
-  const titles: Record<string, string> = {
-    catalogue: 'Download B2B Wholesale Catalogue',
-    dealer: 'Become Fortune Wholesale Distributor / Dealer',
-    visit: 'Schedule Ludhiana Factory Visit',
-    callback: 'Request Instant Executive Callback'
+      setActiveModal(null);
+    }, 2000);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      
-      <div className="relative w-full max-w-lg bg-[#091126] border border-slate-700/80 rounded-3xl shadow-2xl p-6 md:p-8 text-white space-y-5">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs font-sans">
+      <div onClick={() => setActiveModal(null)} className="absolute inset-0 cursor-pointer" />
+
+      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 border border-gray-200 z-10 space-y-5 animate-in zoom-in-95 duration-200 text-gray-900">
         
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 className="font-serif font-bold text-lg text-white">
-            {titles[activeModal] || 'B2B Wholesale Inquiry'}
-          </h3>
-          <button
-            onClick={() => setActiveModal(null)}
-            className="p-1.5 text-slate-400 hover:text-white rounded-full bg-slate-900 border border-slate-700 hover:border-amber-400 transition"
-          >
+        <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+          <div className="flex items-center gap-2">
+            {activeModal === 'sample' ? <FileText className="w-5 h-5 text-[#C5A059]" /> : <PhoneCall className="w-5 h-5 text-[#0F172A]" />}
+            <h3 className="font-serif font-normal text-lg text-gray-900">
+              {activeModal === 'sample' ? 'Request Swatch Fabric Deck' : 'Request Executive Callback'}
+            </h3>
+          </div>
+          <button onClick={() => setActiveModal(null)} className="p-1.5 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100 cursor-pointer">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {submitted ? (
-          <div className="text-center py-8 space-y-3">
-            <CheckCircle2 className="w-12 h-12 mx-auto text-emerald-400" />
-            <h4 className="font-serif font-bold text-lg text-white">Request Sent to WhatsApp!</h4>
-            <p className="text-xs text-slate-300">
-              Our Ludhiana team will get back to you shortly.
-            </p>
+          <div className="text-center py-8 space-y-2">
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+              <Check className="w-6 h-6" />
+            </div>
+            <h4 className="font-serif font-normal text-base text-gray-900">Request Received!</h4>
+            <p className="text-xs text-gray-600 font-sans font-normal">Our B2B representative will contact you within 2 business hours.</p>
           </div>
         ) : (
-          <form onSubmit={handleQuickSubmit} className="space-y-4 text-xs">
+          <form onSubmit={handleSubmit} className="space-y-3 text-xs">
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Full Name *</label>
-              <input
-                type="text"
-                required
-                placeholder="e.g. Ramesh Verma"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
+              <label className="block text-gray-700 font-normal mb-1">Full Name *</label>
+              <input 
+                type="text" 
+                required 
+                placeholder="e.g. Vikram Sharma"
+                value={form.name} 
+                onChange={e => setForm({ ...form, name: e.target.value })}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:outline-none focus:border-[#0F172A] font-normal"
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Company / Store Name *</label>
-              <input
-                type="text"
-                required
-                placeholder="e.g. Fortune Retail Hub"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-slate-300 font-semibold mb-1">WhatsApp Phone *</label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="+91 98765 43210"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-slate-300 font-semibold mb-1">City / Location</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Ludhiana, Delhi"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-slate-300 font-semibold mb-1">Email Address</label>
-              <input
-                type="email"
-                placeholder="buyer@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
+              <label className="block text-gray-700 font-normal mb-1">Phone / WhatsApp *</label>
+              <input 
+                type="tel" 
+                required 
+                placeholder="e.g. +91 98140 12345"
+                value={form.phone} 
+                onChange={e => setForm({ ...form, phone: e.target.value })}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:outline-none focus:border-[#0F172A] font-normal"
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Additional Details / Requirements</label>
-              <textarea
-                rows={2}
-                placeholder="Expected volume, specific categories needed..."
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white placeholder-slate-500 focus:border-[#D4AF37] focus:outline-none"
+              <label className="block text-gray-700 font-normal mb-1">Company / Brand Name</label>
+              <input 
+                type="text" 
+                placeholder="e.g. Urban Threads"
+                value={form.company} 
+                onChange={e => setForm({ ...form, company: e.target.value })}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:outline-none focus:border-[#0F172A] font-normal"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-normal mb-1">City / Location *</label>
+              <input 
+                type="text" 
+                required 
+                placeholder="e.g. Bengaluru"
+                value={form.city} 
+                onChange={e => setForm({ ...form, city: e.target.value })}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-900 focus:outline-none focus:border-[#0F172A] font-normal"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-[#25D366] hover:bg-emerald-500 text-slate-950 font-extrabold text-xs py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer"
+              className="w-full bg-[#0F172A] hover:bg-[#1E293B] text-white font-syne font-normal text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl shadow-md transition cursor-pointer mt-2"
             >
-              <Send className="w-4 h-4" /> SUBMIT TO WHATSAPP (+91 75288 02003)
+              Submit Request
             </button>
           </form>
         )}
 
       </div>
-
     </div>
   );
 };

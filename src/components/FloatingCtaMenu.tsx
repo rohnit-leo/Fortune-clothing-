@@ -2,151 +2,103 @@ import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { 
   MessageCircle, 
-  PhoneCall, 
-  Calculator, 
-  Truck, 
   FileText, 
+  Calculator, 
   X, 
-  Sparkles,
-  ChevronUp,
-  Building2
+  ShoppingBag
 } from 'lucide-react';
 
 export const FloatingCtaMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { setActiveModal, setActiveTab } = useCart();
+  const { setActiveTab, setActiveModal, setIsCartOpen, cartTotalQuantity } = useCart();
 
   const LOGO_SYMBOL_URL = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/IMG_3157.PNG";
 
   return (
-    <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-[99] flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-[90] flex flex-col items-end gap-3 font-sans">
       
-      {/* Expanded Menu Actions */}
+      {/* Speed Dial Options Menu */}
       {isOpen && (
-        <div className="mb-3 space-y-2.5 max-w-[calc(100vw-2rem)] w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="flex flex-col items-end gap-2.5 animate-in slide-in-from-bottom-5 duration-200">
           
-          {/* Action 1: WhatsApp Quick Connect */}
+          {/* Option 1: WhatsApp Direct */}
           <a
-            href="https://wa.me/917528802003?text=Hello%20Fortune%20Clothing%20Co.%2C%20I%20would%20like%20to%20inquire%20about%20wholesale%20manufacturing."
+            href="https://wa.me/917528802003"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-3 bg-[#0A152E]/95 border border-[#25D366]/50 hover:border-[#25D366] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            className="flex items-center gap-2.5 bg-[#25D366] text-white py-2.5 px-4 rounded-full shadow-xl hover:scale-105 transition cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#25D366] text-[#050A1A] flex items-center justify-center font-bold shadow-md shrink-0">
-              <MessageCircle className="w-5 h-5 fill-current" />
-            </div>
-            <div className="text-left min-w-0">
-              <div className="text-xs font-bold font-syne text-[#25D366] group-hover:underline truncate">
-                WhatsApp Factory Line
-              </div>
-              <div className="text-[10px] text-slate-300 font-mono truncate">
-                +91 75288 02003 • Instant Quote
-              </div>
+            <span className="text-xs font-syne font-normal uppercase tracking-wider">WhatsApp Direct</span>
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <MessageCircle className="w-4 h-4 fill-current text-white" />
             </div>
           </a>
 
-          {/* Action 2: Request Instant Callback */}
+          {/* Option 2: B2B Cart */}
           <button
-            onClick={() => { setActiveModal('callback'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-[#C5A059]/50 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            onClick={() => {
+              setIsCartOpen(true);
+              setIsOpen(false);
+            }}
+            className="flex items-center gap-2.5 bg-[#0F172A] text-white py-2.5 px-4 rounded-full shadow-xl hover:scale-105 transition cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#C5A059] text-[#050A1A] flex items-center justify-center font-bold shadow-md shrink-0">
-              <PhoneCall className="w-5 h-5" />
-            </div>
-            <div className="text-left min-w-0">
-              <div className="text-xs font-bold font-syne text-[#C5A059] truncate">
-                Executive Callback
-              </div>
-              <div className="text-[10px] text-slate-300 font-mono truncate">
-                Connect in 15 Minutes
-              </div>
+            <span className="text-xs font-syne font-normal uppercase tracking-wider">B2B Cart ({cartTotalQuantity})</span>
+            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[#C5A059]">
+              <ShoppingBag className="w-4 h-4" />
             </div>
           </button>
 
-          {/* Action 3: B2B Profitability Engine */}
+          {/* Option 3: Request Swatches */}
           <button
-            onClick={() => { setActiveTab('calculator'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            onClick={() => {
+              setActiveModal('sample');
+              setIsOpen(false);
+            }}
+            className="flex items-center gap-2.5 bg-white text-gray-900 border border-gray-200 py-2.5 px-4 rounded-full shadow-xl hover:scale-105 transition cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-[#C5A059] border border-[#C5A059]/30 flex items-center justify-center font-bold shrink-0">
-              <Calculator className="w-5 h-5" />
-            </div>
-            <div className="text-left min-w-0">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059] truncate">
-                B2B Profit Calculator
-              </div>
-              <div className="text-[10px] text-slate-400 font-mono truncate">
-                Estimate Landed Cost
-              </div>
+            <span className="text-xs font-syne font-normal uppercase tracking-wider">Order Swatches</span>
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[#0F172A]">
+              <FileText className="w-4 h-4" />
             </div>
           </button>
 
-          {/* Action 4: Track Order Status */}
+          {/* Option 4: Margin Calculator */}
           <button
-            onClick={() => { setActiveTab('tracker'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
+            onClick={() => {
+              setActiveTab('calculator');
+              setIsOpen(false);
+            }}
+            className="flex items-center gap-2.5 bg-white text-gray-900 border border-gray-200 py-2.5 px-4 rounded-full shadow-xl hover:scale-105 transition cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold shrink-0">
-              <Truck className="w-5 h-5" />
-            </div>
-            <div className="text-left min-w-0">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-emerald-400 truncate">
-                Live Production Tracker
-              </div>
-              <div className="text-[10px] text-slate-400 font-mono truncate">
-                Ludhiana Dispatch Desk
-              </div>
-            </div>
-          </button>
-
-          {/* Action 5: Request Custom Sample / Tech Pack */}
-          <button
-            onClick={() => { setActiveModal('sample'); setIsOpen(false); }}
-            className="w-full flex items-center gap-3 bg-[#0A152E]/95 border border-white/10 hover:border-[#C5A059] text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md transition group cursor-pointer"
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#121c33] text-amber-300 border border-amber-400/30 flex items-center justify-center font-bold shrink-0">
-              <FileText className="w-5 h-5" />
-            </div>
-            <div className="text-left min-w-0">
-              <div className="text-xs font-bold font-syne text-slate-200 group-hover:text-[#C5A059] truncate">
-                Order Garment Sample
-              </div>
-              <div className="text-[10px] text-slate-400 font-mono truncate">
-                Fabric & Fit Verification
-              </div>
+            <span className="text-xs font-syne font-normal uppercase tracking-wider">Margin Calculator</span>
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[#C5A059]">
+              <Calculator className="w-4 h-4" />
             </div>
           </button>
 
         </div>
       )}
 
-      {/* Main Trigger Hub Circular Button - No Text Label */}
+      {/* Main Trigger Circular Button (No text name, pure circular icon) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 shadow-2xl cursor-pointer active:scale-95 shrink-0 ${
-          isOpen 
-            ? 'bg-[#0A152E] border-[#C5A059] text-[#C5A059]' 
-            : 'bg-[#C5A059] hover:bg-white border-[#C5A059] hover:border-white scale-105 shadow-[0_0_25px_rgba(197,160,89,0.5)]'
-        }`}
-        aria-label="Speed Action Hub"
-        title="B2B Speed Actions"
+        className="w-14 h-14 rounded-full bg-[#0F172A] hover:bg-[#1E293B] text-white shadow-2xl border-2 border-[#C5A059] flex items-center justify-center transition-all duration-300 transform active:scale-90 cursor-pointer relative"
+        title="Quick Factory Actions"
+        aria-label="Toggle Quick Floating Menu"
       >
         {isOpen ? (
           <X className="w-6 h-6 text-[#C5A059]" />
         ) : (
           <img 
             src={LOGO_SYMBOL_URL} 
-            alt="Fortune Logo" 
-            className="w-8 h-8 object-contain filter drop-shadow group-hover:scale-110 transition-transform"
+            alt="Menu Icon" 
+            className="w-8 h-8 object-contain rounded-full"
           />
         )}
 
-        {/* Pulse Dot Indicator when closed */}
+        {/* Pulse indicator badge */}
         {!isOpen && (
-          <span className="absolute -top-1 -right-1 flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-[#25D366] border-2 border-[#050A1A]"></span>
-          </span>
+          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#25D366] border-2 border-white animate-pulse" />
         )}
       </button>
 
