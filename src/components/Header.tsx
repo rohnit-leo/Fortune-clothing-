@@ -49,38 +49,6 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm font-sans transition-all">
       
-      {/* Top Announcement Bar */}
-      <div className="bg-[#0F172A] text-white text-[11px] py-2 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-normal tracking-wide mx-auto sm:mx-0">
-            <span className="bg-[#C5A059] text-[#0F172A] text-[9px] font-normal uppercase px-2 py-0.5 rounded font-syne tracking-wider">
-              B2B DIRECT
-            </span>
-            <span className="truncate">
-              Ludhiana Factory Direct Wholesale • MOQ 24 Pcs • PAN India Dispatch & GST Invoice
-            </span>
-          </div>
-          
-          <div className="hidden sm:flex items-center gap-6 text-slate-300 text-[11px]">
-            <a 
-              href="https://wa.me/917528802003" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex items-center gap-1.5 hover:text-[#C5A059] transition"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
-              <span>WhatsApp Desk: +91 75288 02003</span>
-            </a>
-            <button 
-              onClick={() => setActiveModal('sample')} 
-              className="hover:text-[#C5A059] transition font-normal cursor-pointer"
-            >
-              Request Swatches
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
