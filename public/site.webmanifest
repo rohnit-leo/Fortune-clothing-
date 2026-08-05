@@ -1,0 +1,23 @@
+{
+  "name": "Fortune Clothing Company | B2B Garment Manufacturer Ludhiana",
+  "short_name": "Fortune Clothing",
+  "description": "Ludhiana's premier garment manufacturer for premium 240+ GSM oversized t-shirts, heavyweight hoodies, winterwear and private label apparel.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
