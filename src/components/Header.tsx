@@ -25,7 +25,9 @@ export const Header: React.FC = () => {
     wishlist,
     compareList,
     setIsCompareModalOpen,
-    setActiveModal
+    setActiveModal,
+    categories,
+    siteConfig
   } = useCart();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -33,7 +35,7 @@ export const Header: React.FC = () => {
 
   const LOGO_URL = "https://dmqvyrsbaszmina8.public.blob.vercel-storage.com/IMG_3190.PNG";
 
-  const categories = [
+  const categoryNames = categories.length > 0 ? categories.map(c => c.name) : [
     'T-Shirts',
     'Oversized T-Shirts',
     'Polo T-Shirts',
@@ -49,6 +51,14 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm font-sans transition-all">
       
+      {/* Top Announcement Bar (Dynamic from Admin) */}
+      {siteConfig.announcementEnabled && siteConfig.announcementBanner && (
+        <div className="bg-[#0F172A] text-white text-[11px] font-mono py-1.5 px-4 text-center border-b border-amber-500/20 flex items-center justify-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="truncate">{siteConfig.announcementBanner}</span>
+        </div>
+      )}
+
       {/* Main Header Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
@@ -88,7 +98,7 @@ export const Header: React.FC = () => {
                 Wholesale Garment Categories
               </div>
               <div className="py-1">
-                {categories.map((cat) => (
+                {categoryNames.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => {
@@ -294,7 +304,7 @@ export const Header: React.FC = () => {
               Browse Categories
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {categories.map((cat) => (
+              {categoryNames.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => {

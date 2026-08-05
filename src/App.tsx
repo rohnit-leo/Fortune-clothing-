@@ -20,7 +20,7 @@ import { QuickForms } from './components/QuickForms';
 import { LiveEnquiryTracker } from './components/LiveEnquiryTracker';
 import { FloatingCtaMenu } from './components/FloatingCtaMenu';
 import { SeoStructuredData } from './components/SeoStructuredData';
-import { PRODUCTS } from './data/products';
+import { AdminPanel } from './components/AdminPanel';
 import { 
   ChevronDown, 
   Filter, 
@@ -36,15 +36,22 @@ const MainContent: React.FC = () => {
     selectedCategory, 
     setSelectedCategory, 
     searchQuery, 
-    quickViewProduct
+    quickViewProduct,
+    products,
+    isAdminOpen
   } = useCart();
 
   const [gsmFilter, setGsmFilter] = useState<number>(180);
   const [selectedFit, setSelectedFit] = useState<string>('All');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Filter products
-  const filteredProducts = PRODUCTS.filter(p => {
+  // If Admin URL #admin is accessed, show full Admin Panel view
+  if (isAdminOpen) {
+    return <AdminPanel />;
+  }
+
+  // Filter products from dynamic Firestore database
+  const filteredProducts = products.filter(p => {
     if (selectedCategory && p.category !== selectedCategory) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -88,7 +95,7 @@ const MainContent: React.FC = () => {
       {/* DEDICATED PRODUCT DETAILS PAGE VIEW */}
       {activeTab === 'product-detail' && (
         <ProductDetailPage 
-          product={quickViewProduct || PRODUCTS[0]} 
+          product={quickViewProduct || products[0]} 
           onBack={() => setActiveTab('catalogue')} 
         />
       )}
@@ -143,7 +150,7 @@ const MainContent: React.FC = () => {
                   onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
                   className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-syne font-normal text-xs uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>Explore Full Wholesale Catalogue ({PRODUCTS.length} Models)</span>
+                  <span>Explore Full Wholesale Catalogue ({products.length} Models)</span>
                   <ArrowRight className="w-4 h-4 text-[#C5A059]" />
                 </button>
               </div>

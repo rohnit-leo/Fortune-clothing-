@@ -4,94 +4,20 @@ import { REAL_PRODUCT_IMAGES } from '../data/products';
 import { ArrowRight, ChevronRight, Layers } from 'lucide-react';
 
 export const CategoryShowcase: React.FC = () => {
-  const { setSelectedCategory, setActiveTab } = useCart();
+  const { setSelectedCategory, setActiveTab, categories, products } = useCart();
 
-  const CATEGORIES_DATA = [
-    {
-      title: 'T-Shirts',
-      subtitle: '200 - 240 GSM',
-      count: '150+ Designs',
-      image: REAL_PRODUCT_IMAGES[0],
-      categoryKey: 'T-Shirts'
-    },
-    {
-      title: 'Oversized Tees',
-      subtitle: '240 GSM Streetwear',
-      count: '90+ Designs',
-      image: REAL_PRODUCT_IMAGES[1],
-      categoryKey: 'T-Shirts'
-    },
-    {
-      title: 'Polo T-Shirts',
-      subtitle: '230 GSM Matty Pique',
-      count: '60+ Designs',
-      image: REAL_PRODUCT_IMAGES[2],
-      categoryKey: 'T-Shirts'
-    },
-    {
-      title: 'Sweatshirts',
-      subtitle: '330 GSM Loopknit',
-      count: '80+ Designs',
-      image: REAL_PRODUCT_IMAGES[3],
-      categoryKey: 'Sweatshirts'
-    },
-    {
-      title: 'Hoodies',
-      subtitle: '380 GSM French Terry',
-      count: '110+ Designs',
-      image: REAL_PRODUCT_IMAGES[6],
-      categoryKey: 'Hoodies'
-    },
-    {
-      title: 'Tracksuits',
-      subtitle: '280 GSM Poly Interlock',
-      count: '45+ Sets',
-      image: REAL_PRODUCT_IMAGES[2],
-      categoryKey: 'Tracksuits'
-    },
-    {
-      title: 'Lowers',
-      subtitle: '240 GSM Jersey',
-      count: '70+ Designs',
-      image: REAL_PRODUCT_IMAGES[4],
-      categoryKey: 'Lowers'
-    },
-    {
-      title: 'Joggers',
-      subtitle: '290 GSM Lycra Stretch',
-      count: '85+ Designs',
-      image: REAL_PRODUCT_IMAGES[1],
-      categoryKey: 'Joggers'
-    },
-    {
-      title: 'Jackets',
-      subtitle: 'Puffer & Windcheaters',
-      count: '55+ Designs',
-      image: REAL_PRODUCT_IMAGES[7],
-      categoryKey: 'Jackets'
-    },
-    {
-      title: 'Winter Wear',
-      subtitle: '420 GSM Thermal Wool',
-      count: '95+ Designs',
-      image: REAL_PRODUCT_IMAGES[8],
-      categoryKey: 'Winter Wear'
-    },
-    {
-      title: 'Manufacturing',
-      subtitle: 'Bulk Dyeing & Cuts',
-      count: 'Tech Pack OEM',
-      image: REAL_PRODUCT_IMAGES[5],
-      tabKey: 'factory'
-    },
-    {
-      title: 'Private Label',
-      subtitle: 'Tags & Packaging',
-      count: 'Full Branding',
-      image: REAL_PRODUCT_IMAGES[0],
-      tabKey: 'privatelabel'
-    }
-  ];
+  // Combine dynamic categories with product count
+  const dynamicCategories = categories.map((cat, idx) => {
+    const productCount = products.filter(p => p.category === cat.name).length;
+    const catImage = cat.image || products.find(p => p.category === cat.name)?.images[0] || REAL_PRODUCT_IMAGES[idx % REAL_PRODUCT_IMAGES.length];
+    return {
+      title: cat.name,
+      subtitle: cat.description ? `${cat.description.slice(0, 32)}...` : 'Direct Factory Wholesale',
+      count: `${productCount} Models`,
+      image: catImage,
+      categoryKey: cat.name
+    };
+  });
 
   return (
     <section className="py-10 bg-white border-b border-gray-100 font-sans">
@@ -112,23 +38,19 @@ export const CategoryShowcase: React.FC = () => {
             onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
             className="hidden sm:flex items-center gap-1.5 text-xs font-syne font-normal uppercase tracking-wider text-[#0F172A] hover:text-[#C5A059] transition cursor-pointer"
           >
-            <span>View All Products</span>
+            <span>View All Products ({products.length})</span>
             <ArrowRight className="w-4 h-4 text-[#C5A059]" />
           </button>
         </div>
 
         {/* 2 Columns on Mobile, 3 on SM, 4 on MD, 6 on LG */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 pt-1">
-          {CATEGORIES_DATA.map((item, idx) => (
+          {dynamicCategories.map((item, idx) => (
             <div
               key={idx}
               onClick={() => {
-                if (item.tabKey) {
-                  setActiveTab(item.tabKey as any);
-                } else {
-                  setSelectedCategory(item.categoryKey as any);
-                  setActiveTab('catalogue');
-                }
+                setSelectedCategory(item.categoryKey as any);
+                setActiveTab('catalogue');
               }}
               className="bg-gray-50 hover:bg-white border border-gray-200 hover:border-[#0F172A] p-2.5 sm:p-3 rounded-2xl shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer group text-center flex flex-col justify-between"
             >

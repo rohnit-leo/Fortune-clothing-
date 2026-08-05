@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Wholesale clothing product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "category": { "type": "string" },
+        "gsm": { "type": "number" },
+        "fabric": { "type": "string" },
+        "fit": { "type": "string" },
+        "moq": { "type": "number" },
+        "badge": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "inHero": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviews": { "type": "number" },
+        "description": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "colors": { "type": "array" },
+        "sizes": { "type": "array", "items": { "type": "string" } },
+        "wholesaleTiers": { "type": "array" },
+        "specs": { "type": "object" },
+        "stockStatus": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "category", "gsm", "fabric", "moq", "images", "wholesaleTiers"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Apparel category or collection",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "image": { "type": "string" },
+        "count": { "type": "number" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["id", "name"]
+    },
+    "SiteConfig": {
+      "title": "SiteConfig",
+      "description": "Global dynamic configuration for hero, notices, and banners",
+      "type": "object",
+      "properties": {
+        "heroHeadline": { "type": "string" },
+        "heroSubheadline": { "type": "string" },
+        "heroBadge": { "type": "string" },
+        "heroFeaturedProductId": { "type": "string" },
+        "announcementBanner": { "type": "string" },
+        "announcementEnabled": { "type": "boolean" },
+        "whatsappNumber": { "type": "string" },
+        "phone": { "type": "string" },
+        "minOrderNotice": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "products": {
+      "entity": "Product",
+      "description": "Collection of all live wholesale products"
+    },
+    "categories": {
+      "entity": "Category",
+      "description": "Collection of garment categories and collections"
+    },
+    "site_config": {
+      "entity": "SiteConfig",
+      "description": "Global settings and hero configuration"
+    }
+  }
+}

@@ -1,12 +1,5 @@
 export type ProductCategory = 
-  | 'T-Shirts'
-  | 'Sweatshirts'
-  | 'Hoodies'
-  | 'Jackets'
-  | 'Lowers'
-  | 'Joggers'
-  | 'Tracksuits'
-  | 'Winter Wear';
+  | string;
 
 export interface ProductColor {
   name: string;
@@ -41,10 +34,41 @@ export interface Product {
   wholesaleTiers: WholesaleTier[];
   isFeatured?: boolean;
   isNew?: boolean;
+  inHero?: boolean;
+  stockStatus?: 'in_stock' | 'low_stock' | 'made_to_order';
+  badge?: string;
+  rating?: number;
+  reviews?: number;
   bestFor: string[];
   fitType: string;
   shrinkageRate: string;
   washingCare: string;
+  updatedAt?: string;
+}
+
+export interface CategoryItem {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  image?: string;
+  icon?: string;
+  count?: number;
+  featured?: boolean;
+  displayOrder?: number;
+}
+
+export interface SiteConfig {
+  heroHeadline: string;
+  heroSubheadline: string;
+  heroBadge: string;
+  heroFeaturedProductId: string;
+  announcementBanner: string;
+  announcementEnabled: boolean;
+  whatsappNumber: string;
+  phone: string;
+  minOrderNotice: string;
+  updatedAt?: string;
 }
 
 export interface CartItem {

@@ -14,17 +14,29 @@ interface ProductDetailModalProps {
   onClose: () => void;
 }
 
-export const ProductDetailModal: React.FC = ({ product, onClose }) => {
+export const ProductDetailModal: React.FC<{ product: Product; onClose: () => void }> = ({ product, onClose }) => {
   const { addToCart, setIsEnquiryModalOpen } = useCart();
 
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  const [selectedColor, setSelectedColor] = useState<ProductColor>(product.availableColors[0]);
+  const colors = product.availableColors && product.availableColors.length > 0 
+    ? product.availableColors 
+    : [{ name: 'Standard', hex: '#1E293B', image: product.images?.[0] || '' }];
+
+  const images = product.images && product.images.length > 0 
+    ? product.images 
+    : ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=1200'];
+
+  const sizes = product.availableSizes && product.availableSizes.length > 0
+    ? product.availableSizes
+    : ['S', 'M', 'L', 'XL'];
+
+  const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [selectedColor, setSelectedColor] = useState<ProductColor>(colors[0]);
 
   // Size distribution breakdown
   const [sizeQuantities, setSizeQuantities] = useState<Record<string, number>>(() => {
     const initial: Record<string, number> = {};
-    const perSize = Math.ceil(product.moq / product.availableSizes.length);
-    product.availableSizes.forEach(sz => {
+    const perSize = Math.ceil((product.moq || 24) / sizes.length);
+    sizes.forEach(sz => {
       initial[sz] = perSize;
     });
     return initial;

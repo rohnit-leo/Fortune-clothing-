@@ -12,10 +12,13 @@ import {
 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { setActiveTab, setSelectedCategory, setActiveModal } = useCart();
+  const { setActiveTab, setSelectedCategory, setActiveModal, siteConfig, products, setQuickViewProduct } = useCart();
 
-  const HERO_IMAGE_PRIMARY = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.02.39%20AM.jpeg";
-  const HERO_IMAGE_SECONDARY = "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.04.22%20AM.jpeg";
+  // Find the selected hero featured product from dynamic Firestore data
+  const featuredProduct = products.find(p => p.id === siteConfig.heroFeaturedProductId) || products[0];
+
+  const HERO_IMAGE_PRIMARY = featuredProduct?.images[0] || "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.02.39%20AM.jpeg";
+  const HERO_IMAGE_SECONDARY = featuredProduct?.images[1] || products[1]?.images[0] || "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.04.22%20AM.jpeg";
 
   return (
     <section className="relative bg-white pt-4 pb-10 sm:pb-14 font-sans overflow-hidden">
@@ -38,17 +41,17 @@ export const Hero: React.FC = () => {
               <div className="inline-flex items-center gap-2 bg-white border border-gray-200 px-3.5 py-1.5 rounded-full shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[11px] font-syne font-normal uppercase tracking-widest text-[#0F172A]">
-                  Ludhiana Direct Hosiery Mill • 240-420 GSM
+                  {siteConfig.heroBadge || 'Ludhiana Direct Hosiery Mill • 240-420 GSM'}
                 </span>
               </div>
 
               {/* Main Headline */}
               <div className="space-y-3">
                 <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-gray-900 leading-[1.12]">
-                  Direct Factory Apparel Manufacturing & Bulk Wholesale
+                  {siteConfig.heroHeadline || 'Direct Factory Apparel Manufacturing & Bulk Wholesale'}
                 </h1>
                 <p className="text-sm sm:text-base text-gray-600 max-w-2xl font-normal leading-relaxed">
-                  Precision knitwear sourcing for fashion labels, retail chains, and private brands. Manufactured in Ludhiana with bio-washed combed cotton, 330+ GSM heavy fleece, and AQL 2.5 export standard quality.
+                  {siteConfig.heroSubheadline || 'Precision knitwear sourcing for fashion labels, retail chains, and private brands. Manufactured in Ludhiana with bio-washed combed cotton, 330+ GSM heavy fleece, and AQL 2.5 export standard quality.'}
                 </p>
               </div>
 
@@ -56,7 +59,7 @@ export const Hero: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs font-normal text-gray-700">
                 <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
                   <CheckCircle2 className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>MOQ 24 Pcs / Style</span>
+                  <span>MOQ {featuredProduct?.moq || 24} Pcs / Style</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
                   <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
@@ -79,7 +82,7 @@ export const Hero: React.FC = () => {
                 </button>
 
                 <a
-                  href="https://wa.me/917528802003"
+                  href={`https://wa.me/${siteConfig.whatsappNumber?.replace(/[^0-9]/g, '') || '917528802003'}`}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-[#25D366] hover:bg-emerald-600 text-white text-xs sm:text-sm font-syne font-normal uppercase tracking-widest px-5 py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 active:scale-95"
@@ -119,10 +122,13 @@ export const Hero: React.FC = () => {
               <div className="relative mx-auto max-w-sm lg:max-w-none">
                 
                 {/* Primary Card */}
-                <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white group">
+                <div 
+                  onClick={() => featuredProduct && setQuickViewProduct(featuredProduct)}
+                  className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white group cursor-pointer"
+                >
                   <img 
                     src={HERO_IMAGE_PRIMARY} 
-                    alt="Imperial Heavyweight Oversized Tee" 
+                    alt={featuredProduct?.name || "Imperial Heavyweight Garment"} 
                     className="w-full h-[340px] sm:h-[420px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   
@@ -130,18 +136,24 @@ export const Hero: React.FC = () => {
                   <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-gray-200 shadow-md flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-mono text-[#C5A059] font-normal block uppercase">
-                        FCC-TS-240
+                        SKU: {featuredProduct?.code || 'FCC-TS-240'}
                       </span>
-                      <h3 className="font-serif font-normal text-sm text-gray-900">
-                        Heavyweight Oversized Tee
+                      <h3 className="font-serif font-normal text-sm text-gray-900 line-clamp-1">
+                        {featuredProduct?.name || 'Heavyweight Oversized Tee'}
                       </h3>
                       <p className="text-[11px] text-gray-500 font-normal">
-                        240 GSM • 100% Combed Cotton
+                        {featuredProduct?.gsm || 240} GSM • {featuredProduct?.fabric || '100% Combed Cotton'}
                       </p>
                     </div>
 
                     <button
-                      onClick={() => { setActiveTab('catalogue'); setSelectedCategory('T-Shirts'); }}
+                      onClick={(e) => { 
+                        e.stopPropagation();
+                        if (featuredProduct) {
+                          setSelectedCategory(featuredProduct.category);
+                          setActiveTab('catalogue');
+                        }
+                      }}
                       className="bg-[#0F172A] text-white p-2 rounded-lg hover:bg-[#C5A059] hover:text-[#0F172A] transition cursor-pointer"
                       title="View Category"
                     >
@@ -151,18 +163,23 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Secondary Floating Stock Badge */}
-                <div className="hidden sm:flex absolute -top-3 -left-5 bg-white p-2.5 rounded-2xl shadow-lg border border-gray-200 items-center gap-3 max-w-xs">
-                  <img 
-                    src={HERO_IMAGE_SECONDARY} 
-                    alt="330 GSM Fleece Hoodie" 
-                    className="w-12 h-12 object-cover rounded-xl border border-gray-200"
-                  />
-                  <div className="text-left">
-                    <span className="text-[9px] font-syne font-normal uppercase text-[#C5A059]">WHOLESALE STOCK</span>
-                    <div className="text-xs font-normal text-gray-900 font-serif">330 GSM Fleece</div>
-                    <div className="text-[10px] text-emerald-600 font-normal">Mill Ready Stock</div>
+                {products[1] && (
+                  <div 
+                    onClick={() => setQuickViewProduct(products[1])}
+                    className="hidden sm:flex absolute -top-3 -left-5 bg-white p-2.5 rounded-2xl shadow-lg border border-gray-200 items-center gap-3 max-w-xs cursor-pointer hover:scale-105 transition-transform"
+                  >
+                    <img 
+                      src={HERO_IMAGE_SECONDARY} 
+                      alt={products[1].name} 
+                      className="w-12 h-12 object-cover rounded-xl border border-gray-200"
+                    />
+                    <div className="text-left">
+                      <span className="text-[9px] font-syne font-normal uppercase text-[#C5A059]">WHOLESALE HIGHLIGHT</span>
+                      <div className="text-xs font-normal text-gray-900 font-serif line-clamp-1">{products[1].gsm} GSM {products[1].category}</div>
+                      <div className="text-[10px] text-emerald-600 font-normal">From {products[1].wholesaleTiers[products[1].wholesaleTiers.length - 1]?.pricePerPieceEst || '₹280'}/pc</div>
+                    </div>
                   </div>
-                </div>
+                )}
 
               </div>
             </div>

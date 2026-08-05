@@ -25,24 +25,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     isInCompare
   } = useCart();
 
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
+  const colors = product.availableColors && product.availableColors.length > 0
+    ? product.availableColors
+    : [{ name: 'Standard', hex: '#1E293B', image: product.images?.[0] || '' }];
+
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [addedAnimation, setAddedAnimation] = useState(false);
 
-  const mainImage = selectedColor.image || product.images[currentImageIndex] || product.images[0];
-  const secondImage = product.images[1] || product.images[0];
+  const images = product.images && product.images.length > 0 
+    ? product.images 
+    : ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=1200'];
+
+  const mainImage = selectedColor?.image || images[currentImageIndex] || images[0];
+  const secondImage = images[1] || images[0];
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
     
     // Default quick size run totaling 24 Pcs (S:4, M:8, L:8, XL:4)
-    const defaultSizes: Record<string, number> = {
-      'S': 4,
-      'M': 8,
-      'L': 8,
-      'XL': 4
-    };
+    const sizes = product.availableSizes && product.availableSizes.length > 0
+      ? product.availableSizes
+      : ['S', 'M', 'L', 'XL'];
+
+    const defaultSizes: Record<string, number> = {};
+    sizes.forEach((sz, idx) => {
+      defaultSizes[sz] = idx === 1 ? 12 : idx === 2 ? 12 : 0;
+    });
 
     addToCart(product, selectedColor, defaultSizes);
     setAddedAnimation(true);

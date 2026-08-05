@@ -22,15 +22,15 @@ interface ProductDetailPageProps {
 }
 
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, onBack }) => {
-  const { addToCart, setIsCartOpen, toggleWishlist, isInWishlist, toggleCompare, isInCompare } = useCart();
+  const { addToCart, setIsCartOpen, toggleWishlist, isInWishlist, toggleCompare, isInCompare, products } = useCart();
 
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
+  const [selectedColor, setSelectedColor] = useState(product.availableColors[0] || { name: 'Default', hex: '#000000', image: product.images[0] });
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // Size run quantities matrix state
   const [sizeQuantities, setSizeQuantities] = useState<Record<string, number>>(() => {
     const initial: Record<string, number> = {};
-    product.availableSizes.forEach((sz, idx) => {
+    (product.availableSizes || ['S', 'M', 'L', 'XL', '2XL']).forEach((sz, idx) => {
       // Default initial size breakdown totaling 24 pcs (12 M, 12 L)
       initial[sz] = idx === 1 ? 12 : idx === 2 ? 12 : 0;
     });
@@ -53,10 +53,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
   const [openAccordion, setOpenAccordion] = useState<string | null>('desc');
   const [addedSuccess, setAddedSuccess] = useState(false);
 
-  const currentImage = selectedColor.image || product.images[activeImageIndex] || product.images[0];
+  const currentImage = selectedColor?.image || product.images[activeImageIndex] || product.images[0];
 
   const totalQuantity = (Object.values(sizeQuantities) as number[]).reduce((acc: number, curr: number) => acc + (curr || 0), 0);
-  const isUnderMoq = totalQuantity < product.moq;
+  const isUnderMoq = totalQuantity < (product.moq || 24);
 
   const handleSizeChange = (size: string, value: number) => {
     setSizeQuantities(prev => ({
@@ -78,8 +78,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
   const inCompare = isInCompare(product.id);
 
   // Related products from same category
-  const relatedProducts = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category).concat(
-    PRODUCTS.filter(p => p.id !== product.id && p.category !== product.category)
+  const allProducts = products.length > 0 ? products : PRODUCTS;
+  const relatedProducts = allProducts.filter(p => p.id !== product.id && p.category === product.category).concat(
+    allProducts.filter(p => p.id !== product.id && p.category !== product.category)
   ).slice(0, 4);
 
   return (
