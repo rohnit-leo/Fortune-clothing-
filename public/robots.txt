@@ -1,4 +1,4 @@
-# robots.txt for Fortune Clothing Company (https://fortuneclothing.in)
+# robots.txt for Fortune Clothing Company / Ludhiana Wholesale Factory
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -16,16 +16,7 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
-
 User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
 Allow: /
 
 User-agent: Applebot
@@ -43,6 +34,7 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# Sitemap and Host
-Host: https://fortuneclothing.in
-Sitemap: https://fortuneclothing.in/sitemap.xml
+# Sitemap and Host directives
+Host: https://ludhianawholesalefactory.com
+Sitemap: https://ludhianawholesalefactory.com/sitemap.xml
+Sitemap: https://www.ludhianawholesalefactory.com/sitemap.xml

@@ -1,105 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-                            http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Homepage -->
   <url>
-    <loc>https://fortuneclothing.in/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://fortuneclothing.in/favicon.jpg</image:loc>
-      <image:title>Fortune Clothing Company - Ludhiana B2B Garment Manufacturer</image:title>
+      <image:loc>https://ludhianawholesalefactory.com/favicon.jpg</image:loc>
+      <image:title>Fortune Clothing Company - Ludhiana Wholesale Factory Direct Garments</image:title>
     </image:image>
   </url>
 
   <!-- Wholesale Catalogue -->
   <url>
-    <loc>https://fortuneclothing.in/?tab=catalogue</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?tab=catalogue</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Category: Oversized T-Shirts Wholesale -->
   <url>
-    <loc>https://fortuneclothing.in/?category=T-Shirts</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=T-Shirts</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Category: Heavyweight Hoodies Wholesale -->
   <url>
-    <loc>https://fortuneclothing.in/?category=Hoodies</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=Hoodies</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Category: Fleece Sweatshirts Wholesale -->
   <url>
-    <loc>https://fortuneclothing.in/?category=Sweatshirts</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=Sweatshirts</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Category: Winter Wear Wholesale -->
   <url>
-    <loc>https://fortuneclothing.in/?category=Winter+Wear</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=Winter+Wear</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Category: Tracksuits Wholesale -->
   <url>
-    <loc>https://fortuneclothing.in/?category=Tracksuits</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=Tracksuits</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Category: Joggers & Lowers -->
   <url>
-    <loc>https://fortuneclothing.in/?category=Joggers</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?category=Joggers</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Private Label OEM Manufacturing -->
   <url>
-    <loc>https://fortuneclothing.in/?tab=privatelabel</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?tab=privatelabel</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <!-- Factory Infrastructure & Quality Controls -->
   <url>
-    <loc>https://fortuneclothing.in/?tab=factory</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?tab=factory</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- B2B Wholesale Calculator -->
   <url>
-    <loc>https://fortuneclothing.in/?tab=calculator</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?tab=calculator</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Live Dispatch & Order Tracking -->
   <url>
-    <loc>https://fortuneclothing.in/?tab=tracker</loc>
-    <lastmod>2026-08-01</lastmod>
+    <loc>https://ludhianawholesalefactory.com/?tab=tracker</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

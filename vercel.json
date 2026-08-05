@@ -14,10 +14,6 @@
           "value": "nosniff"
         },
         {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
         }
@@ -32,7 +28,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate"
+          "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
     },
@@ -45,7 +41,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate"
+          "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
     },
@@ -54,14 +50,14 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=86400"
         }
       ]
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!api|favicon\\.jpg|robots\\.txt|sitemap\\.xml|site\\.webmanifest|.*\\..*).*)",
+      "source": "/((?!api|favicon\\.jpg|robots\\.txt|sitemap\\.xml|site\\.webmanifest|assets|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]

@@ -162,13 +162,13 @@ export const SeoStructuredData: React.FC = () => {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://fortuneclothing.in/"
+          "item": "https://ludhianawholesalefactory.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": activeTab === 'catalogue' ? 'Catalogue' : activeTab === 'privatelabel' ? 'Private Label' : activeTab === 'factory' ? 'Factory' : activeTab === 'calculator' ? 'Calculators' : 'Wholesale Direct',
-          "item": `https://fortuneclothing.in/?tab=${activeTab}`
+          "item": `https://ludhianawholesalefactory.com/?tab=${activeTab}`
         }
       ]
     };
