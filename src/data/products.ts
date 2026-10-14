@@ -14,9 +14,198 @@ export const REAL_PRODUCT_IMAGES = [
 
 export const PRODUCTS: Product[] = [
   {
+    id: 'prod-oversized-tshirt',
+    name: 'OVERSIZED T-SHIRT',
+    category: 'OVERSIZED',
+    subtitle: '240 GSM • 100% Cotton',
+    code: 'FCC-OST-240',
+    images: [
+      '/src/assets/images/prod_oversized_charcoal_1791987743382.jpg',
+      '/src/assets/images/cat_oversized_1791987535237.jpg',
+      '/src/assets/images/cat_tshirts_1791987514882.jpg'
+    ],
+    fabric: '100% Super Combed Compact Cotton',
+    gsm: 240,
+    moq: 24,
+    blend: '100% Cotton Bio-Washed',
+    availableSizes: ['M', 'L', 'XL', 'XXL'],
+    availableColors: [
+      { name: 'Dark Charcoal', hex: '#374151', image: '/src/assets/images/prod_oversized_charcoal_1791987743382.jpg' },
+      { name: 'Beige Tan', hex: '#D2C3B2', image: '/src/assets/images/cat_oversized_1791987535237.jpg' },
+      { name: 'Pitch Black', hex: '#111827', image: '/src/assets/images/cat_tshirts_1791987514882.jpg' },
+      { name: 'Forest Olive', hex: '#2C3B2D' }
+    ],
+    description: 'Direct factory manufactured 240 GSM drop-shoulder oversized streetwear t-shirt. Crafted in Ludhiana with bio-washed super combed compact yarn, heavy lycra ribbed collar, and double needle reinforcement.',
+    features: [
+      '240 GSM Heavyweight 100% Combed Cotton',
+      'Drop-Shoulder Boxy Streetwear Silhouette',
+      '1x1 Lycra Infused Anti-Sag Rib Collar',
+      'Bio-Washed & Silicon Softened Touch',
+      'Pre-Shrunk Fabric with Minimal Shrinkage'
+    ],
+    customizationOptions: [
+      'Screen Printing & High-Density Puff Print',
+      'Custom Woven Brand Labels & Hangtags',
+      'Individual Polybag Packaging with Barcode',
+      'Custom Pantone Color Dyeing (100+ Pcs)'
+    ],
+    dispatchDays: '3 - 5 Days',
+    wholesaleTiers: [
+      { minQty: 24, maxQty: 99, pricePerPieceEst: '₹220 - ₹240/pc', discountPct: 'Base Wholesale' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: '₹195 - ₹210/pc', discountPct: '12% Extra Margin' },
+      { minQty: 500, maxQty: 'Factory Lot', pricePerPieceEst: '₹175 - ₹185/pc', discountPct: 'Factory Direct Rate' }
+    ],
+    isFeatured: true,
+    isNew: true,
+    inHero: true,
+    bestFor: ['Streetwear Labels', 'E-commerce Brands', 'B2B Retail Chains'],
+    fitType: 'Oversized Boxy Fit',
+    shrinkageRate: '<1.2% ISO Certified',
+    washingCare: 'Machine Wash Cold, Tumble Dry Low'
+  },
+  {
+    id: 'prod-knit-polo-tshirt',
+    name: 'KNIT POLO T-SHIRT',
+    category: 'POLOS',
+    subtitle: '220 GSM • Premium Knit',
+    code: 'FCC-POLO-220',
+    images: [
+      '/src/assets/images/cat_polos_1791987559351.jpg',
+      REAL_PRODUCT_IMAGES[0]
+    ],
+    fabric: 'Premium 100% Combed Honeycomb Cotton Knit',
+    gsm: 220,
+    moq: 24,
+    blend: '100% Combed Cotton Knit',
+    availableSizes: ['M', 'L', 'XL', 'XXL'],
+    availableColors: [
+      { name: 'Forest Olive', hex: '#2F4F2F', image: '/src/assets/images/cat_polos_1791987559351.jpg' },
+      { name: 'Jet Black', hex: '#111827' },
+      { name: 'Classic Off-White', hex: '#F5F5F0' },
+      { name: 'Navy Blue', hex: '#0B1D3A' }
+    ],
+    description: 'Executive 220 GSM knitted collar polo crafted from high-grade combed cotton with flat-knit collar and matching cuffs. Ideal for premium brand retail and corporate uniform lines.',
+    features: [
+      '220 GSM Premium Honeycomb Matty Knit',
+      'Reinforced Flat-Knit Collar with 2-Button Placket',
+      'Side Vent Slits with Herringbone Taping',
+      'Colorfast Reactive Dyeing (Zero Bleeding)'
+    ],
+    customizationOptions: [
+      'High-Density Chest Embroidery',
+      'Custom Engraved Buttons & Woven Label',
+      'Contrast Collar & Placket Taping'
+    ],
+    dispatchDays: '3 - 5 Days',
+    wholesaleTiers: [
+      { minQty: 24, maxQty: 99, pricePerPieceEst: '₹260 - ₹280/pc', discountPct: 'Standard Wholesale' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: '₹235 - ₹250/pc', discountPct: '10% Bulk Margin' },
+      { minQty: 500, maxQty: 'Contract Bulk', pricePerPieceEst: '₹210 - ₹225/pc', discountPct: 'Direct Factory Rate' }
+    ],
+    isFeatured: true,
+    isNew: true,
+    bestFor: ['Boutique Menswear', 'Corporate Orders', 'Premium Casual Lines'],
+    fitType: 'Regular Comfort Fit',
+    shrinkageRate: '<1.5%',
+    washingCare: 'Gentle Wash Cold, Do Not Wring'
+  },
+  {
+    id: 'prod-hoodie-fleece',
+    name: 'HOODIE',
+    category: 'HOODIES',
+    subtitle: '330 GSM • Brushed Fleece',
+    code: 'FCC-HD-330',
+    images: [
+      '/src/assets/images/cat_hoodies_1791987612418.jpg',
+      '/src/assets/images/fortune_hero_flatlay_1791987492427.jpg'
+    ],
+    fabric: '330 GSM Brushed Heavy Cotton Fleece',
+    gsm: 330,
+    moq: 24,
+    blend: '80% Cotton, 20% Poly Thermal Core',
+    availableSizes: ['M', 'L', 'XL', 'XXL'],
+    availableColors: [
+      { name: 'Cream Beige', hex: '#EBE3D5', image: '/src/assets/images/cat_hoodies_1791987612418.jpg' },
+      { name: 'Tan Khaki', hex: '#C3B091' },
+      { name: 'Olive Green', hex: '#4B5320' },
+      { name: 'Heather Grey', hex: '#A8A9AD' },
+      { name: 'Pitch Black', hex: '#111827' }
+    ],
+    description: 'Heavyweight 330 GSM brushed fleece pullover hoodie engineered for winter collections. Double-layered thermal hood with heavy braided matching drawstrings and deep front kangaroo pouch.',
+    features: [
+      '330 GSM Brushed Thermal Cotton Fleece',
+      'Double-Fabric 2-Panel Self Lined Hood',
+      'Wide Ribbed Cuffs and Hem with Spandex Recovery',
+      'Reinforced Stress Points on Kangaroo Pocket'
+    ],
+    customizationOptions: [
+      'High-Density 3D Rubber Chest Print',
+      'Custom Tipped Metal Aglets & Drawcords',
+      'Direct-to-Garment & Chenille Embroidery'
+    ],
+    dispatchDays: '4 - 6 Days',
+    wholesaleTiers: [
+      { minQty: 24, maxQty: 99, pricePerPieceEst: '₹480 - ₹510/pc', discountPct: 'Wholesale Tier 1' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: '₹430 - ₹455/pc', discountPct: '15% Volume Discount' },
+      { minQty: 500, maxQty: 'Mill Contract', pricePerPieceEst: '₹390 - ₹415/pc', discountPct: 'Direct Factory Floor' }
+    ],
+    isFeatured: true,
+    isNew: true,
+    inHero: true,
+    bestFor: ['Streetwear Labels', 'Winter Collections', 'Merchandise Drops'],
+    fitType: 'Relaxed Streetwear Fit',
+    shrinkageRate: '<1.0%',
+    washingCare: 'Machine Wash Cold, Hang Dry'
+  },
+  {
+    id: 'prod-track-pants',
+    name: 'TRACK PANTS',
+    category: 'TRACK PANTS',
+    subtitle: '280 GSM • Loopknit',
+    code: 'FCC-TP-280',
+    images: [
+      '/src/assets/images/prod_trackpants_black_1791987781568.jpg',
+      '/src/assets/images/cat_trackpants_1791987671341.jpg'
+    ],
+    fabric: '280 GSM Heavy French Terry Loopknit',
+    gsm: 280,
+    moq: 24,
+    blend: '95% Combed Cotton, 5% Lycra',
+    availableSizes: ['M', 'L', 'XL', 'XXL'],
+    availableColors: [
+      { name: 'Solid Black', hex: '#111827', image: '/src/assets/images/prod_trackpants_black_1791987781568.jpg' },
+      { name: 'Heather Grey', hex: '#A8A9AD', image: '/src/assets/images/cat_trackpants_1791987671341.jpg' },
+      { name: 'Navy Blue', hex: '#0B1D3A' }
+    ],
+    description: 'High-durability 280 GSM loopknit track pants with deep zippered slash pockets, wide elasticated drawcord waistband, and ribbed ankle cuffs. Engineered for everyday athletic and lounge wear.',
+    features: [
+      '280 GSM 4-Way Stretch Heavy Loopknit',
+      'Dual Concealed YKK Zipper Pockets',
+      'Encased Elastic Waistband with Inner Flat Drawcord',
+      'Ankle Rib Cuffs for Tapered Fit'
+    ],
+    customizationOptions: [
+      'Side Seam Contrast Piping or Taping',
+      'Heat-Transfer Reflective Logo Application',
+      'Custom Brand Labeling & Polybag'
+    ],
+    dispatchDays: '3 - 5 Days',
+    wholesaleTiers: [
+      { minQty: 24, maxQty: 99, pricePerPieceEst: '₹320 - ₹340/pc', discountPct: 'B2B Standard' },
+      { minQty: 100, maxQty: 499, pricePerPieceEst: '₹285 - ₹305/pc', discountPct: '12% Extra Margin' },
+      { minQty: 500, maxQty: 'Factory Contract', pricePerPieceEst: '₹260 - ₹275/pc', discountPct: 'Factory Direct Rate' }
+    ],
+    isFeatured: true,
+    isNew: true,
+    bestFor: ['Athleisure Retailers', 'Gym & Streetwear Brands', 'Bulk Uniform Supply'],
+    fitType: 'Tapered Modern Jogger Fit',
+    shrinkageRate: '<1.2%',
+    washingCare: 'Machine Wash Cold Inside-Out'
+  },
+  {
     id: 'fcc-ts-01',
     name: 'Imperial Heavyweight Oversized Tee',
-    category: 'T-Shirts',
+    category: 'OVERSIZED',
     subtitle: '240 GSM 100% Combed Compact Cotton',
     code: 'FCC-TS-240',
     images: [
@@ -57,7 +246,7 @@ export const PRODUCTS: Product[] = [
       { minQty: 500, maxQty: 'Bulk Custom', pricePerPieceEst: 'Direct Factory Rate', discountPct: 'Maximum B2B Rebate' }
     ],
     isFeatured: true,
-    isNew: true,
+    isNew: false,
     bestFor: ['Streetwear Apparel Brands', 'Boutique Wholesale Retailers', 'Private Labeling'],
     fitType: 'Oversized Streetwear Fit',
     shrinkageRate: '<1.2% ISO Certified',

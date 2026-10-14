@@ -1,86 +1,94 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { REAL_PRODUCT_IMAGES } from '../data/products';
-import { ArrowRight, ChevronRight, Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const CategoryShowcase: React.FC = () => {
-  const { setSelectedCategory, setActiveTab, categories, products } = useCart();
+  const { setSelectedCategory, setActiveTab, categories } = useCart();
 
-  // Combine dynamic categories with product count
-  const dynamicCategories = categories.map((cat, idx) => {
-    const productCount = products.filter(p => p.category === cat.name).length;
-    const catImage = cat.image || products.find(p => p.category === cat.name)?.images[0] || REAL_PRODUCT_IMAGES[idx % REAL_PRODUCT_IMAGES.length];
-    return {
-      title: cat.name,
-      subtitle: cat.description ? `${cat.description.slice(0, 32)}...` : 'Direct Factory Wholesale',
-      count: `${productCount} Models`,
-      image: catImage,
-      categoryKey: cat.name
-    };
-  });
+  // Reference order and fallback mapping
+  const REFERENCE_CATEGORIES = [
+    { name: 'T-SHIRTS', image: '/src/assets/images/cat_tshirts_1791987514882.jpg' },
+    { name: 'OVERSIZED', image: '/src/assets/images/cat_oversized_1791987535237.jpg' },
+    { name: 'POLOS', image: '/src/assets/images/cat_polos_1791987559351.jpg' },
+    { name: 'SWEATSHIRTS', image: '/src/assets/images/cat_sweatshirts_1791987585313.jpg' },
+    { name: 'HOODIES', image: '/src/assets/images/cat_hoodies_1791987612418.jpg' },
+    { name: 'TRACKSUITS', image: '/src/assets/images/cat_tracksuits_1791987639180.jpg' },
+    { name: 'TRACK PANTS', image: '/src/assets/images/cat_trackpants_1791987671341.jpg' },
+    { name: 'JACKETS', image: '/src/assets/images/cat_jackets_1791987704485.jpg' },
+  ];
+
+  // Merge live categories from Firestore with fallback images
+  const displayCategories = categories.length >= 8 
+    ? categories 
+    : REFERENCE_CATEGORIES.map((ref, idx) => {
+        const found = categories.find(c => c.name.toUpperCase() === ref.name);
+        return found || {
+          id: `ref-cat-${idx}`,
+          name: ref.name,
+          slug: ref.name.toLowerCase().replace(/\s+/g, '-'),
+          description: 'Factory direct wholesale',
+          image: ref.image,
+          displayOrder: idx + 1
+        };
+      });
+
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+    setActiveTab('catalogue');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <section className="py-10 bg-white border-b border-gray-100 font-sans">
+    <section className="py-8 sm:py-12 bg-white font-sans border-b border-gray-100 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Section Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059] mb-1">
-              <Layers className="w-3.5 h-3.5 text-[#C5A059]" /> B2B Category Navigation
-            </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-normal text-gray-900">
-              Browse Wholesale Garment Categories
-            </h2>
-          </div>
+          <h2 className="text-base sm:text-xl font-bold uppercase tracking-wider text-gray-900">
+            SHOP BY CATEGORY
+          </h2>
 
           <button
-            onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
-            className="hidden sm:flex items-center gap-1.5 text-xs font-syne font-normal uppercase tracking-wider text-[#0F172A] hover:text-[#C5A059] transition cursor-pointer"
+            onClick={() => {
+              setSelectedCategory(null);
+              setActiveTab('catalogue');
+            }}
+            className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-800 hover:text-[#C89B3C] transition cursor-pointer"
           >
-            <span>View All Products ({products.length})</span>
-            <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+            <span>VIEW ALL</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* 2 Columns on Mobile, 3 on SM, 4 on MD, 6 on LG */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 pt-1">
-          {dynamicCategories.map((item, idx) => (
-            <div
-              key={idx}
-              onClick={() => {
-                setSelectedCategory(item.categoryKey as any);
-                setActiveTab('catalogue');
-              }}
-              className="bg-gray-50 hover:bg-white border border-gray-200 hover:border-[#0F172A] p-2.5 sm:p-3 rounded-2xl shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer group text-center flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative h-28 sm:h-36 w-full rounded-xl overflow-hidden mb-2.5 bg-gray-200">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        {/* 8 Categories Grid: 4 columns across on mobile, 4 or 8 on desktop */}
+        <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-6 pt-1">
+          {displayCategories.slice(0, 8).map((cat) => {
+            const fallback = REFERENCE_CATEGORIES.find(r => r.name === cat.name.toUpperCase())?.image;
+            const finalImage = cat.image || fallback || '/src/assets/images/cat_tshirts_1791987514882.jpg';
+
+            return (
+              <div
+                key={cat.id || cat.name}
+                onClick={() => handleCategoryClick(cat.name)}
+                className="flex flex-col items-center group cursor-pointer text-center"
+              >
+                {/* Circular Image Container */}
+                <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-[#F3F4F6] p-1.5 sm:p-2.5 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-2xs group-hover:shadow-sm border border-gray-100">
+                  <img
+                    src={finalImage}
+                    alt={cat.name}
+                    className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-2">
-                    <span className="text-[10px] font-syne font-normal uppercase tracking-wider text-white bg-[#0F172A]/90 px-2.5 py-1 rounded-full flex items-center gap-1">
-                      Explore <ChevronRight className="w-3 h-3 text-[#C5A059]" />
-                    </span>
-                  </div>
                 </div>
 
-                <h3 className="font-serif font-normal text-xs sm:text-sm text-gray-900 group-hover:text-[#0F172A] truncate">
-                  {item.title}
-                </h3>
-                <p className="text-[10px] text-gray-500 font-normal truncate mt-0.5">
-                  {item.subtitle}
-                </p>
+                {/* Category Label */}
+                <span className="text-[10px] sm:text-xs font-bold text-gray-800 uppercase tracking-wider mt-2 group-hover:text-[#C89B3C] transition-colors leading-tight">
+                  {cat.name}
+                </span>
               </div>
-
-              <div className="mt-2 inline-block bg-white group-hover:bg-[#0F172A] group-hover:text-white border border-gray-200 text-gray-700 text-[9px] font-mono font-normal px-2 py-0.5 rounded-full transition">
-                {item.count}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

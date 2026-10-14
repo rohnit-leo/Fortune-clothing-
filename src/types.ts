@@ -62,7 +62,8 @@ export interface SiteConfig {
   heroHeadline: string;
   heroSubheadline: string;
   heroBadge: string;
-  heroFeaturedProductId: string;
+  heroImage?: string;
+  heroFeaturedProductId?: string;
   announcementBanner: string;
   announcementEnabled: boolean;
   whatsappNumber: string;

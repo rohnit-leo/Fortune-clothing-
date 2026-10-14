@@ -9,6 +9,7 @@ import { ProductCard } from './components/ProductCard';
 import { ProductDetailPage } from './components/ProductDetailPage';
 import { FabricExplorer } from './components/FabricExplorer';
 import { ManufacturingPipeline } from './components/ManufacturingPipeline';
+import { WhyChooseUs } from './components/WhyChooseUs';
 import { QualityHotspots } from './components/QualityHotspots';
 import { PanIndiaLogistics } from './components/PanIndiaLogistics';
 import { WholesaleCalculators } from './components/WholesaleCalculators';
@@ -105,60 +106,43 @@ const MainContent: React.FC = () => {
         <>
           <Hero />
           <CategoryShowcase />
-          <BrandStoryScroll />
-
-          {/* Featured Wholesale Catalogue Spotlight */}
-          <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
-            <div className="max-w-7xl mx-auto space-y-8">
+          {/* NEW ARRIVALS 🔥 Section from Reference Image */}
+          <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100 select-none">
+            <div className="max-w-7xl mx-auto space-y-6">
               
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                  <div className="inline-flex items-center gap-2 text-[10px] font-syne font-normal uppercase tracking-widest text-[#C5A059] mb-1">
-                    <Layers className="w-3.5 h-3.5 text-[#C5A059]" /> High-Demand Wholesale Collection
-                  </div>
-                  <h2 className="font-serif text-2xl sm:text-4xl font-normal text-gray-900">
-                    Featured Garment Models
-                  </h2>
-                </div>
+              {/* Section Header */}
+              <div className="flex items-center justify-between">
+                <h2 className="text-base sm:text-xl font-bold uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                  <span>NEW ARRIVALS</span>
+                  <span className="text-base">🔥</span>
+                </h2>
 
-                <div className="flex flex-wrap gap-2 text-xs font-normal">
-                  {['All', 'T-Shirts', 'Hoodies', 'Sweatshirts', 'Winter Wear'].map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setSelectedCategory(cat === 'All' ? null : cat as any)}
-                      className={`px-3.5 py-1.5 rounded-xl transition cursor-pointer text-[10px] font-syne font-normal uppercase tracking-wider ${
-                        (cat === 'All' && !selectedCategory) || selectedCategory === cat
-                          ? 'bg-[#0F172A] text-white shadow-xs'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
+                <button
+                  onClick={() => {
+                    setActiveTab('catalogue');
+                    setSelectedCategory(null);
+                  }}
+                  className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-800 hover:text-[#C89B3C] transition cursor-pointer"
+                >
+                  <span>VIEW ALL</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
 
-              {/* Product Grid - 2 Columns on Mobile! */}
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-                {filteredProducts.slice(0, 8).map((p) => (
+              {/* 4 Cards Grid - 2 columns on mobile, 4 on desktop */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {products.slice(0, 4).map((p) => (
                   <ProductCard key={p.id} product={p} />
                 ))}
-              </div>
-
-              <div className="text-center pt-4">
-                <button
-                  onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
-                  className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-syne font-normal text-xs uppercase tracking-widest px-8 py-4 rounded-xl shadow-md transition cursor-pointer inline-flex items-center gap-2"
-                >
-                  <span>Explore Full Wholesale Catalogue ({products.length} Models)</span>
-                  <ArrowRight className="w-4 h-4 text-[#C5A059]" />
-                </button>
               </div>
 
             </div>
           </section>
 
-          <FabricExplorer />
+          {/* WHY WHOLESALE BUYERS CHOOSE US */}
+          <WhyChooseUs />
+
+          {/* FROM FABRIC TO DISPATCH (Manufacturing Pipeline) */}
           <ManufacturingPipeline />
           <QualityHotspots />
           <WholesaleCalculators />

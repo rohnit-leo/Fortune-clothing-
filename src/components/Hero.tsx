@@ -2,192 +2,131 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import { 
   ArrowRight, 
-  MessageCircle, 
-  CheckCircle2, 
-  ChevronRight,
-  Factory,
-  Sparkles,
-  PackageCheck,
-  ShieldCheck
+  ShieldCheck, 
+  Layers, 
+  Truck
 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { setActiveTab, setSelectedCategory, setActiveModal, siteConfig, products, setQuickViewProduct } = useCart();
+  const { setActiveTab, setSelectedCategory, siteConfig } = useCart();
 
-  // Find the selected hero featured product from dynamic Firestore data
-  const featuredProduct = products.find(p => p.id === siteConfig.heroFeaturedProductId) || products[0];
-
-  const HERO_IMAGE_PRIMARY = featuredProduct?.images[0] || "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.02.39%20AM.jpeg";
-  const HERO_IMAGE_SECONDARY = featuredProduct?.images[1] || products[1]?.images[0] || "https://kwrv4maomvrojc0c.public.blob.vercel-storage.com/product/WhatsApp%20Image%202026-07-31%20at%2010.04.22%20AM.jpeg";
+  const HERO_IMAGE = siteConfig.heroImage || '/src/assets/images/fortune_hero_flatlay_1791987492427.jpg';
+  const whatsappNumber = siteConfig.whatsappNumber?.replace(/[^0-9]/g, '') || '917528802003';
 
   return (
-    <section className="relative bg-white pt-4 pb-10 sm:pb-14 font-sans overflow-hidden">
+    <section className="relative bg-[#111317] text-white overflow-hidden font-sans select-none">
       
-      {/* Background Soft Glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-amber-50 rounded-full blur-3xl opacity-40 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-100 rounded-full blur-3xl opacity-50 pointer-events-none" />
+      {/* Background Graphic & Texture Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={HERO_IMAGE} 
+          alt="Fortune Clothing Company Ludhiana Factory Menswear Collection" 
+          className="w-full h-full object-cover object-center lg:object-right opacity-35 lg:opacity-75"
+        />
+        {/* Responsive gradient overlay ensuring high legibility on left */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#111317] via-[#111317]/90 to-transparent lg:w-3/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent lg:hidden" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        
-        {/* Redesigned Modern B2B Hero Box */}
-        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xs relative overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
+        <div className="max-w-2xl space-y-5 sm:space-y-6">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Badge: LATEST MEN'S COLLECTION */}
+          <div>
+            <span className="inline-block bg-[#C89B3C] text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm">
+              {siteConfig.heroBadge || "LATEST MEN'S COLLECTION"}
+            </span>
+          </div>
+
+          {/* Headline: DIRECT FROM LUDHIANA */}
+          <div className="space-y-1">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white">
+              DIRECT FROM
+              <span className="block text-[#C89B3C] tracking-tight">
+                LUDHIANA
+              </span>
+            </h1>
+            <p className="text-base sm:text-xl font-medium text-gray-200 pt-2 tracking-wide">
+              {siteConfig.heroSubheadline || "Manufacturer of Premium Men's Garments"}
+            </p>
+          </div>
+
+          {/* 3 Gold Feature Pillars from Reference Image */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-2">
             
-            {/* Left Column: Factory Overview & Value Proposition */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-white border border-gray-200 px-3.5 py-1.5 rounded-full shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[11px] font-syne font-normal uppercase tracking-widest text-[#0F172A]">
-                  {siteConfig.heroBadge || 'Ludhiana Direct Hosiery Mill • 240-420 GSM'}
+            {/* Feature 1: Low MOQ */}
+            <div className="flex items-start gap-2 bg-white/5 border border-white/10 p-2 sm:p-2.5 rounded-xl backdrop-blur-xs">
+              <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-[#C89B3C] shrink-0 mt-0.5" />
+              <div className="flex flex-col">
+                <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-white">
+                  LOW MOQ
+                </span>
+                <span className="text-[8px] sm:text-[10px] text-gray-300 font-medium leading-tight">
+                  24 PCS / STYLE
                 </span>
               </div>
-
-              {/* Main Headline */}
-              <div className="space-y-3">
-                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-gray-900 leading-[1.12]">
-                  {siteConfig.heroHeadline || 'Direct Factory Apparel Manufacturing & Bulk Wholesale'}
-                </h1>
-                <p className="text-sm sm:text-base text-gray-600 max-w-2xl font-normal leading-relaxed">
-                  {siteConfig.heroSubheadline || 'Precision knitwear sourcing for fashion labels, retail chains, and private brands. Manufactured in Ludhiana with bio-washed combed cotton, 330+ GSM heavy fleece, and AQL 2.5 export standard quality.'}
-                </p>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs font-normal text-gray-700">
-                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>MOQ {featuredProduct?.moq || 24} Pcs / Style</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
-                  <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>100% GST Tax Credit</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl border border-gray-200">
-                  <PackageCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>Doorstep PAN India</span>
-                </div>
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => { setActiveTab('catalogue'); setSelectedCategory(null); }}
-                  className="bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs sm:text-sm font-syne font-normal uppercase tracking-widest px-6 py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 group active:scale-95"
-                >
-                  <span>Explore B2B Catalogue</span>
-                  <ArrowRight className="w-4 h-4 text-[#C5A059] group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href={`https://wa.me/${siteConfig.whatsappNumber?.replace(/[^0-9]/g, '') || '917528802003'}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-[#25D366] hover:bg-emerald-600 text-white text-xs sm:text-sm font-syne font-normal uppercase tracking-widest px-5 py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 active:scale-95"
-                >
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>WhatsApp Quote</span>
-                </a>
-
-                <button
-                  onClick={() => setActiveModal('sample')}
-                  className="bg-white hover:bg-gray-100 text-gray-800 border border-gray-300 text-xs sm:text-sm font-syne font-normal uppercase tracking-wider px-5 py-3.5 rounded-xl transition cursor-pointer"
-                >
-                  Request Swatches
-                </button>
-              </div>
-
-              {/* Manufacturing Capacity Indicators */}
-              <div className="grid grid-cols-3 gap-4 pt-5 border-t border-gray-200 text-left">
-                <div>
-                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">15,000+</div>
-                  <div className="text-[11px] text-gray-500 font-normal">Daily Garment Output</div>
-                </div>
-                <div>
-                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">240-420</div>
-                  <div className="text-[11px] text-gray-500 font-normal">GSM Heavy Knits</div>
-                </div>
-                <div>
-                  <div className="font-serif font-normal text-xl sm:text-2xl text-[#0F172A]">500+</div>
-                  <div className="text-[11px] text-gray-500 font-normal">Active Brand Clients</div>
-                </div>
-              </div>
-
             </div>
 
-            {/* Right Column: High-End Fashion & Garment Showcase */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-sm lg:max-w-none">
-                
-                {/* Primary Card */}
-                <div 
-                  onClick={() => featuredProduct && setQuickViewProduct(featuredProduct)}
-                  className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white group cursor-pointer"
-                >
-                  <img 
-                    src={HERO_IMAGE_PRIMARY} 
-                    alt={featuredProduct?.name || "Imperial Heavyweight Garment"} 
-                    className="w-full h-[340px] sm:h-[420px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  />
-                  
-                  {/* Floating Garment Tag */}
-                  <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-gray-200 shadow-md flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono text-[#C5A059] font-normal block uppercase">
-                        SKU: {featuredProduct?.code || 'FCC-TS-240'}
-                      </span>
-                      <h3 className="font-serif font-normal text-sm text-gray-900 line-clamp-1">
-                        {featuredProduct?.name || 'Heavyweight Oversized Tee'}
-                      </h3>
-                      <p className="text-[11px] text-gray-500 font-normal">
-                        {featuredProduct?.gsm || 240} GSM • {featuredProduct?.fabric || '100% Combed Cotton'}
-                      </p>
-                    </div>
+            {/* Feature 2: GST Invoice */}
+            <div className="flex items-start gap-2 bg-white/5 border border-white/10 p-2 sm:p-2.5 rounded-xl backdrop-blur-xs">
+              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#C89B3C] shrink-0 mt-0.5" />
+              <div className="flex flex-col">
+                <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-white">
+                  GST INVOICE
+                </span>
+                <span className="text-[8px] sm:text-[10px] text-gray-300 font-medium leading-tight">
+                  100% TAX CREDIT
+                </span>
+              </div>
+            </div>
 
-                    <button
-                      onClick={(e) => { 
-                        e.stopPropagation();
-                        if (featuredProduct) {
-                          setSelectedCategory(featuredProduct.category);
-                          setActiveTab('catalogue');
-                        }
-                      }}
-                      className="bg-[#0F172A] text-white p-2 rounded-lg hover:bg-[#C5A059] hover:text-[#0F172A] transition cursor-pointer"
-                      title="View Category"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Secondary Floating Stock Badge */}
-                {products[1] && (
-                  <div 
-                    onClick={() => setQuickViewProduct(products[1])}
-                    className="hidden sm:flex absolute -top-3 -left-5 bg-white p-2.5 rounded-2xl shadow-lg border border-gray-200 items-center gap-3 max-w-xs cursor-pointer hover:scale-105 transition-transform"
-                  >
-                    <img 
-                      src={HERO_IMAGE_SECONDARY} 
-                      alt={products[1].name} 
-                      className="w-12 h-12 object-cover rounded-xl border border-gray-200"
-                    />
-                    <div className="text-left">
-                      <span className="text-[9px] font-syne font-normal uppercase text-[#C5A059]">WHOLESALE HIGHLIGHT</span>
-                      <div className="text-xs font-normal text-gray-900 font-serif line-clamp-1">{products[1].gsm} GSM {products[1].category}</div>
-                      <div className="text-[10px] text-emerald-600 font-normal">From {products[1].wholesaleTiers[products[1].wholesaleTiers.length - 1]?.pricePerPieceEst || '₹280'}/pc</div>
-                    </div>
-                  </div>
-                )}
-
+            {/* Feature 3: Pan India Delivery */}
+            <div className="flex items-start gap-2 bg-white/5 border border-white/10 p-2 sm:p-2.5 rounded-xl backdrop-blur-xs">
+              <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-[#C89B3C] shrink-0 mt-0.5" />
+              <div className="flex flex-col">
+                <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-white">
+                  PAN INDIA
+                </span>
+                <span className="text-[8px] sm:text-[10px] text-gray-300 font-medium leading-tight">
+                  DOORSTEP DELIVERY
+                </span>
               </div>
             </div>
 
           </div>
 
-        </div>
+          {/* 2 Action Buttons */}
+          <div className="flex flex-wrap items-center gap-3 pt-3">
+            
+            {/* VIEW COLLECTION Button */}
+            <button
+              onClick={() => {
+                setActiveTab('catalogue');
+                setSelectedCategory(null);
+              }}
+              className="bg-[#C89B3C] hover:bg-[#b58930] text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-lg shadow-md transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+            >
+              <span>VIEW COLLECTION</span>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </button>
 
+            {/* WHATSAPP NOW Button */}
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Fortune Clothing Company, I saw your DIRECT FROM LUDHIANA wholesale collection and want to see the latest catalog & pricing.")}`}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-black/50 hover:bg-black/80 text-white border border-white/60 font-bold text-xs sm:text-sm uppercase tracking-wider px-5 py-3.5 rounded-lg transition-all flex items-center gap-2 active:scale-95"
+            >
+              <svg className="w-4 h-4 fill-current text-[#25D366]" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.969.54 1.769.88 2.8.88 3.179 0 5.767-2.587 5.767-5.766.001-3.18-2.585-5.766-5.771-5.766zm3.393 8.307c-.144.405-.837.774-1.17.824-.312.045-.694.076-2.072-.493-1.638-.675-2.678-2.339-2.758-2.447-.079-.108-.66-88-.66-1.678 0-.797.412-1.192.56-1.353.148-.161.323-.202.43-.202.107 0 .215.002.309.007.098.005.231-.038.36.273.133.322.457 1.114.497 1.196.041.082.068.178.014.286-.054.108-.082.176-.162.27-.081.096-.17.214-.243.287-.081.082-.166.171-.071.334.095.163.423.698.908 1.129.624.555 1.149.728 1.312.809.163.081.258.072.355-.039.096-.111.412-.48.522-.645.11-.164.22-.138.371-.082.152.055.962.454 1.127.536.165.082.275.123.315.191.041.069.041.401-.103.806z"/>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.528 3.659 1.445 5.174L2 22l4.981-1.306C8.423 21.524 10.151 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.673 0-3.238-.475-4.571-1.298l-.328-.2-2.969.778.792-2.894-.214-.341C3.844 14.887 3.8 13.486 3.8 12c0-4.521 3.679-8.2 8.2-8.2 4.522 0 8.2 3.679 8.2 8.2 0 4.522-3.678 8.2-8.2 8.2z"/>
+              </svg>
+              <span>WHATSAPP NOW</span>
+            </a>
+
+          </div>
+
+        </div>
       </div>
     </section>
   );
