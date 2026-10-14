@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { Heart } from 'lucide-react';
+import { resolveImageUrl, handleImageError, DEFAULT_PRODUCT_IMAGE } from '../utils/imageUrl';
 
 interface ProductCardProps {
   product: Product;
@@ -28,10 +29,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const images = product.images && product.images.length > 0 
     ? product.images 
-    : ['/src/assets/images/cat_tshirts_1791987514882.jpg'];
+    : [DEFAULT_PRODUCT_IMAGE];
 
   const currentColor = colors[selectedColorIndex];
-  const displayImage = currentColor?.image || images[0];
+  const rawImage = currentColor?.image || images[0] || DEFAULT_PRODUCT_IMAGE;
+  const displayImage = resolveImageUrl(rawImage, DEFAULT_PRODUCT_IMAGE);
 
   const inWishlist = isInWishlist(product.id);
 
@@ -48,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   // Determine specs line
-  const specsLine = product.subtitle || `${product.gsm} GSM • ${product.fabric || '100% Cotton'}`;
+  const specsLine = product.subtitle || `${product.gsm || 240} GSM • ${product.fabric || '100% Cotton'}`;
 
   // Sizes format
   const sizeRange = product.availableSizes && product.availableSizes.length > 0
@@ -66,6 +68,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <img 
           src={displayImage} 
           alt={product.name} 
+          onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
           className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />

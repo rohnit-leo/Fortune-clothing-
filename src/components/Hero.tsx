@@ -6,11 +6,12 @@ import {
   Layers, 
   Truck
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError, DEFAULT_HERO_IMAGE } from '../utils/imageUrl';
 
 export const Hero: React.FC = () => {
   const { setActiveTab, setSelectedCategory, siteConfig } = useCart();
 
-  const HERO_IMAGE = siteConfig.heroImage || '/src/assets/images/fortune_hero_flatlay_1791987492427.jpg';
+  const HERO_IMAGE = resolveImageUrl(siteConfig.heroImage, DEFAULT_HERO_IMAGE);
   const whatsappNumber = siteConfig.whatsappNumber?.replace(/[^0-9]/g, '') || '917528802003';
 
   return (
@@ -21,6 +22,7 @@ export const Hero: React.FC = () => {
         <img 
           src={HERO_IMAGE} 
           alt="Fortune Clothing Company Ludhiana Factory Menswear Collection" 
+          onError={(e) => handleImageError(e, DEFAULT_HERO_IMAGE)}
           className="w-full h-full object-cover object-center lg:object-right opacity-35 lg:opacity-75"
         />
         {/* Responsive gradient overlay ensuring high legibility on left */}

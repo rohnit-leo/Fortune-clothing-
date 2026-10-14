@@ -1,20 +1,21 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { ArrowRight } from 'lucide-react';
+import { resolveImageUrl, handleImageError, CATEGORY_IMAGE_MAP } from '../utils/imageUrl';
 
 export const CategoryShowcase: React.FC = () => {
   const { setSelectedCategory, setActiveTab, categories } = useCart();
 
   // Reference order and fallback mapping
   const REFERENCE_CATEGORIES = [
-    { name: 'T-SHIRTS', image: '/src/assets/images/cat_tshirts_1791987514882.jpg' },
-    { name: 'OVERSIZED', image: '/src/assets/images/cat_oversized_1791987535237.jpg' },
-    { name: 'POLOS', image: '/src/assets/images/cat_polos_1791987559351.jpg' },
-    { name: 'SWEATSHIRTS', image: '/src/assets/images/cat_sweatshirts_1791987585313.jpg' },
-    { name: 'HOODIES', image: '/src/assets/images/cat_hoodies_1791987612418.jpg' },
-    { name: 'TRACKSUITS', image: '/src/assets/images/cat_tracksuits_1791987639180.jpg' },
-    { name: 'TRACK PANTS', image: '/src/assets/images/cat_trackpants_1791987671341.jpg' },
-    { name: 'JACKETS', image: '/src/assets/images/cat_jackets_1791987704485.jpg' },
+    { name: 'T-SHIRTS', image: '/images/cat_tshirts.jpg' },
+    { name: 'OVERSIZED', image: '/images/cat_oversized.jpg' },
+    { name: 'POLOS', image: '/images/cat_polos.jpg' },
+    { name: 'SWEATSHIRTS', image: '/images/cat_sweatshirts.jpg' },
+    { name: 'HOODIES', image: '/images/cat_hoodies.jpg' },
+    { name: 'TRACKSUITS', image: '/images/cat_tracksuits.jpg' },
+    { name: 'TRACK PANTS', image: '/images/cat_trackpants.jpg' },
+    { name: 'JACKETS', image: '/images/cat_jackets.jpg' },
   ];
 
   // Merge live categories from Firestore with fallback images
@@ -63,8 +64,8 @@ export const CategoryShowcase: React.FC = () => {
         {/* 8 Categories Grid: 4 columns across on mobile, 4 or 8 on desktop */}
         <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-6 pt-1">
           {displayCategories.slice(0, 8).map((cat) => {
-            const fallback = REFERENCE_CATEGORIES.find(r => r.name === cat.name.toUpperCase())?.image;
-            const finalImage = cat.image || fallback || '/src/assets/images/cat_tshirts_1791987514882.jpg';
+            const fallback = CATEGORY_IMAGE_MAP[cat.name.toUpperCase()] || '/images/cat_tshirts.jpg';
+            const finalImage = resolveImageUrl(cat.image, fallback);
 
             return (
               <div
@@ -77,6 +78,7 @@ export const CategoryShowcase: React.FC = () => {
                   <img
                     src={finalImage}
                     alt={cat.name}
+                    onError={(e) => handleImageError(e, fallback)}
                     className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-300"
                     loading="lazy"
                   />

@@ -2,6 +2,7 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import { REAL_PRODUCT_IMAGES } from '../data/products';
 import { Layers } from 'lucide-react';
+import { handleImageError } from '../utils/imageUrl';
 
 export const FabricExplorer: React.FC = () => {
   const { setActiveModal } = useCart();
@@ -62,7 +63,12 @@ export const FabricExplorer: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {FABRICS.map((f, idx) => (
             <div key={idx} className="bg-gray-50 border border-gray-200 p-3.5 sm:p-4 rounded-2xl space-y-2.5 shadow-2xs hover:shadow-md transition">
-              <img src={f.image} alt={f.name} className="w-full h-32 sm:h-36 object-cover rounded-xl border border-gray-200 bg-white" />
+              <img 
+                src={f.image} 
+                alt={f.name} 
+                onError={(e) => handleImageError(e, '/images/cat_polos.jpg')}
+                className="w-full h-32 sm:h-36 object-cover rounded-xl border border-gray-200 bg-white" 
+              />
               <div className="space-y-1">
                 <span className="text-[10px] font-mono font-normal text-[#C5A059] uppercase">{f.type}</span>
                 <h3 className="font-serif font-normal text-xs sm:text-sm text-gray-900">{f.name}</h3>

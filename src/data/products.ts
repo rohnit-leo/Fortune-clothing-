@@ -20,9 +20,9 @@ export const PRODUCTS: Product[] = [
     subtitle: '240 GSM • 100% Cotton',
     code: 'FCC-OST-240',
     images: [
-      '/src/assets/images/prod_oversized_charcoal_1791987743382.jpg',
-      '/src/assets/images/cat_oversized_1791987535237.jpg',
-      '/src/assets/images/cat_tshirts_1791987514882.jpg'
+      '/images/prod_oversized_charcoal.jpg',
+      '/images/cat_oversized.jpg',
+      '/images/cat_tshirts.jpg'
     ],
     fabric: '100% Super Combed Compact Cotton',
     gsm: 240,
@@ -30,9 +30,9 @@ export const PRODUCTS: Product[] = [
     blend: '100% Cotton Bio-Washed',
     availableSizes: ['M', 'L', 'XL', 'XXL'],
     availableColors: [
-      { name: 'Dark Charcoal', hex: '#374151', image: '/src/assets/images/prod_oversized_charcoal_1791987743382.jpg' },
-      { name: 'Beige Tan', hex: '#D2C3B2', image: '/src/assets/images/cat_oversized_1791987535237.jpg' },
-      { name: 'Pitch Black', hex: '#111827', image: '/src/assets/images/cat_tshirts_1791987514882.jpg' },
+      { name: 'Dark Charcoal', hex: '#374151', image: '/images/prod_oversized_charcoal.jpg' },
+      { name: 'Beige Tan', hex: '#D2C3B2', image: '/images/cat_oversized.jpg' },
+      { name: 'Pitch Black', hex: '#111827', image: '/images/cat_tshirts.jpg' },
       { name: 'Forest Olive', hex: '#2C3B2D' }
     ],
     description: 'Direct factory manufactured 240 GSM drop-shoulder oversized streetwear t-shirt. Crafted in Ludhiana with bio-washed super combed compact yarn, heavy lycra ribbed collar, and double needle reinforcement.',
@@ -70,7 +70,7 @@ export const PRODUCTS: Product[] = [
     subtitle: '220 GSM • Premium Knit',
     code: 'FCC-POLO-220',
     images: [
-      '/src/assets/images/cat_polos_1791987559351.jpg',
+      '/images/cat_polos.jpg',
       REAL_PRODUCT_IMAGES[0]
     ],
     fabric: 'Premium 100% Combed Honeycomb Cotton Knit',
@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
     blend: '100% Combed Cotton Knit',
     availableSizes: ['M', 'L', 'XL', 'XXL'],
     availableColors: [
-      { name: 'Forest Olive', hex: '#2F4F2F', image: '/src/assets/images/cat_polos_1791987559351.jpg' },
+      { name: 'Forest Olive', hex: '#2F4F2F', image: '/images/cat_polos.jpg' },
       { name: 'Jet Black', hex: '#111827' },
       { name: 'Classic Off-White', hex: '#F5F5F0' },
       { name: 'Navy Blue', hex: '#0B1D3A' }
@@ -116,8 +116,8 @@ export const PRODUCTS: Product[] = [
     subtitle: '330 GSM • Brushed Fleece',
     code: 'FCC-HD-330',
     images: [
-      '/src/assets/images/cat_hoodies_1791987612418.jpg',
-      '/src/assets/images/fortune_hero_flatlay_1791987492427.jpg'
+      '/images/cat_hoodies.jpg',
+      '/images/hero_flatlay.jpg'
     ],
     fabric: '330 GSM Brushed Heavy Cotton Fleece',
     gsm: 330,
@@ -125,7 +125,7 @@ export const PRODUCTS: Product[] = [
     blend: '80% Cotton, 20% Poly Thermal Core',
     availableSizes: ['M', 'L', 'XL', 'XXL'],
     availableColors: [
-      { name: 'Cream Beige', hex: '#EBE3D5', image: '/src/assets/images/cat_hoodies_1791987612418.jpg' },
+      { name: 'Cream Beige', hex: '#EBE3D5', image: '/images/cat_hoodies.jpg' },
       { name: 'Tan Khaki', hex: '#C3B091' },
       { name: 'Olive Green', hex: '#4B5320' },
       { name: 'Heather Grey', hex: '#A8A9AD' },
@@ -164,8 +164,8 @@ export const PRODUCTS: Product[] = [
     subtitle: '280 GSM • Loopknit',
     code: 'FCC-TP-280',
     images: [
-      '/src/assets/images/prod_trackpants_black_1791987781568.jpg',
-      '/src/assets/images/cat_trackpants_1791987671341.jpg'
+      '/images/prod_trackpants_black.jpg',
+      '/images/cat_trackpants.jpg'
     ],
     fabric: '280 GSM Heavy French Terry Loopknit',
     gsm: 280,
@@ -173,8 +173,8 @@ export const PRODUCTS: Product[] = [
     blend: '95% Combed Cotton, 5% Lycra',
     availableSizes: ['M', 'L', 'XL', 'XXL'],
     availableColors: [
-      { name: 'Solid Black', hex: '#111827', image: '/src/assets/images/prod_trackpants_black_1791987781568.jpg' },
-      { name: 'Heather Grey', hex: '#A8A9AD', image: '/src/assets/images/cat_trackpants_1791987671341.jpg' },
+      { name: 'Solid Black', hex: '#111827', image: '/images/prod_trackpants_black.jpg' },
+      { name: 'Heather Grey', hex: '#A8A9AD', image: '/images/cat_trackpants.jpg' },
       { name: 'Navy Blue', hex: '#0B1D3A' }
     ],
     description: 'High-durability 280 GSM loopknit track pants with deep zippered slash pockets, wide elasticated drawcord waistband, and ribbed ankle cuffs. Engineered for everyday athletic and lounge wear.',

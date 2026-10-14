@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { Product, CategoryItem, ProductColor, WholesaleTier, SiteConfig } from '../types';
 import { compressImageFile } from '../lib/firebase';
+import { resolveImageUrl, handleImageError, DEFAULT_PRODUCT_IMAGE } from '../utils/imageUrl';
 import { 
   Plus, 
   Trash2, 
@@ -566,8 +567,9 @@ export const AdminPanel: React.FC = () => {
                 <div className="flex items-center gap-3">
                   {currentCategoryObj.image ? (
                     <img 
-                      src={currentCategoryObj.image} 
+                      src={resolveImageUrl(currentCategoryObj.image, '/images/cat_tshirts.jpg')} 
                       alt={currentCategoryObj.name} 
+                      onError={(e) => handleImageError(e, '/images/cat_tshirts.jpg')}
                       className="w-12 h-12 object-cover rounded-xl border border-slate-200"
                     />
                   ) : (
@@ -667,7 +669,7 @@ export const AdminPanel: React.FC = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredProducts.map((prod) => {
-                  const primaryImg = prod.images?.[0] || PRESET_FABRIC_IMAGES[0].url;
+                  const primaryImg = resolveImageUrl(prod.images?.[0] || PRESET_FABRIC_IMAGES[0].url, DEFAULT_PRODUCT_IMAGE);
                   const lowestPrice = prod.wholesaleTiers?.[prod.wholesaleTiers.length - 1]?.pricePerPieceEst || '₹280';
                   const basePrice = prod.wholesaleTiers?.[0]?.pricePerPieceEst || '₹340';
 
@@ -685,6 +687,7 @@ export const AdminPanel: React.FC = () => {
                           <img 
                             src={primaryImg} 
                             alt={prod.name} 
+                            onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
                             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                           />
                           {prod.images?.length > 1 && (
@@ -840,7 +843,12 @@ export const AdminPanel: React.FC = () => {
                     <div className="flex items-start gap-3.5">
                       <div className="w-16 h-16 rounded-xl bg-slate-100 overflow-hidden border border-slate-200 shrink-0">
                         {cat.image ? (
-                          <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
+                          <img 
+                            src={resolveImageUrl(cat.image, '/images/cat_tshirts.jpg')} 
+                            alt={cat.name} 
+                            onError={(e) => handleImageError(e, '/images/cat_tshirts.jpg')}
+                            className="w-full h-full object-cover" 
+                          />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center font-serif text-xl font-bold text-slate-400">
                             {cat.name.charAt(0)}
@@ -1351,7 +1359,12 @@ export const AdminPanel: React.FC = () => {
                     <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                       {(editingProduct.images || []).map((img, idx) => (
                         <div key={idx} className="relative aspect-[3/4] rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group">
-                          <img src={img} alt="Product" className="w-full h-full object-cover object-top" />
+                          <img 
+                            src={resolveImageUrl(img, DEFAULT_PRODUCT_IMAGE)} 
+                            alt="Product" 
+                            onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
+                            className="w-full h-full object-cover object-top" 
+                          />
                           <button
                             type="button"
                             onClick={() => {

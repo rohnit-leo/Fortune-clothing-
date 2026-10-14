@@ -1,6 +1,7 @@
 import React from 'react';
 import { REAL_PRODUCT_IMAGES } from '../data/products';
 import { Award } from 'lucide-react';
+import { handleImageError } from '../utils/imageUrl';
 
 export const BrandStoryScroll: React.FC = () => {
   return (
@@ -23,7 +24,12 @@ export const BrandStoryScroll: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           <div className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-2xs space-y-3">
-            <img src={REAL_PRODUCT_IMAGES[0]} alt="Cotton Yarn" className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" />
+            <img 
+              src={REAL_PRODUCT_IMAGES[0]} 
+              alt="Cotton Yarn" 
+              onError={(e) => handleImageError(e, '/images/cat_tshirts.jpg')}
+              className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" 
+            />
             <span className="text-[10px] font-syne font-normal text-[#C5A059] uppercase tracking-wider block">01. MILL KNITTING & DYEING</span>
             <h3 className="font-serif font-normal text-base sm:text-lg text-gray-900">100% Super Combed Compact Cotton</h3>
             <p className="text-xs text-gray-600 leading-relaxed font-normal">
@@ -32,7 +38,12 @@ export const BrandStoryScroll: React.FC = () => {
           </div>
 
           <div className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-2xs space-y-3">
-            <img src={REAL_PRODUCT_IMAGES[3]} alt="Cutting & Sewing" className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" />
+            <img 
+              src={REAL_PRODUCT_IMAGES[3]} 
+              alt="Cutting & Sewing" 
+              onError={(e) => handleImageError(e, '/images/cat_polos.jpg')}
+              className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" 
+            />
             <span className="text-[10px] font-syne font-normal text-[#C5A059] uppercase tracking-wider block">02. AUTOMATED CUT & SEW</span>
             <h3 className="font-serif font-normal text-base sm:text-lg text-gray-900">High-Density Twin Needle Stitching</h3>
             <p className="text-xs text-gray-600 leading-relaxed font-normal">
@@ -41,7 +52,12 @@ export const BrandStoryScroll: React.FC = () => {
           </div>
 
           <div className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-2xs space-y-3">
-            <img src={REAL_PRODUCT_IMAGES[6]} alt="AQL Inspection" className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" />
+            <img 
+              src={REAL_PRODUCT_IMAGES[6]} 
+              alt="AQL Inspection" 
+              onError={(e) => handleImageError(e, '/images/hero_flatlay.jpg')}
+              className="w-full h-40 sm:h-44 object-cover rounded-xl border border-gray-100" 
+            />
             <span className="text-[10px] font-syne font-normal text-[#C5A059] uppercase tracking-wider block">03. EXPORT GRADE AUDIT</span>
             <h3 className="font-serif font-normal text-base sm:text-lg text-gray-900">AQL 2.5 Quality Assurance</h3>
             <p className="text-xs text-gray-600 leading-relaxed font-normal">

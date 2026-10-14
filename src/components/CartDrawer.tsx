@@ -7,6 +7,7 @@ import {
   ArrowRight, 
   AlertTriangle
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError, DEFAULT_PRODUCT_IMAGE } from '../utils/imageUrl';
 
 export const CartDrawer: React.FC = () => {
   const { 
@@ -67,6 +68,8 @@ export const CartDrawer: React.FC = () => {
             cart.map((item, index) => {
               const itemTotal = item.totalQuantity;
               const isUnderMoq = itemTotal < item.product.moq;
+              const rawImage = item.selectedColor?.image || item.product.images?.[0] || DEFAULT_PRODUCT_IMAGE;
+              const displayImage = resolveImageUrl(rawImage, DEFAULT_PRODUCT_IMAGE);
 
               return (
                 <div key={index} className="bg-gray-50 border border-gray-200 p-4 rounded-2xl space-y-3 relative group shadow-2xs">
@@ -80,8 +83,9 @@ export const CartDrawer: React.FC = () => {
 
                   <div className="flex gap-3">
                     <img
-                      src={item.selectedColor.image || item.product.images[0]}
+                      src={displayImage}
                       alt={item.product.name}
+                      onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
                       className="w-16 h-20 object-cover rounded-xl border border-gray-200 bg-white"
                     />
                     <div className="space-y-1">

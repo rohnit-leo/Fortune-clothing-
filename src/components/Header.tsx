@@ -13,6 +13,7 @@ import {
   Layers,
   Sparkles
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageUrl';
 
 export const Header: React.FC = () => {
   const { 
@@ -239,7 +240,12 @@ export const Header: React.FC = () => {
                     >
                       <div className="flex items-center gap-2.5">
                         {cat.image ? (
-                          <img src={cat.image} alt={cat.name} className="w-6 h-6 rounded-full object-cover bg-gray-200" />
+                          <img 
+                            src={resolveImageUrl(cat.image, '/images/cat_tshirts.jpg')} 
+                            alt={cat.name} 
+                            onError={(e) => handleImageError(e, '/images/cat_tshirts.jpg')}
+                            className="w-6 h-6 rounded-full object-cover bg-gray-200" 
+                          />
                         ) : (
                           <Layers className="w-4 h-4 text-[#C5A059]" />
                         )}

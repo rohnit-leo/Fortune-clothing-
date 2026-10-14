@@ -15,6 +15,7 @@ import {
   Scale, 
   ChevronDown
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError, DEFAULT_PRODUCT_IMAGE } from '../utils/imageUrl';
 
 interface ProductDetailPageProps {
   product: Product;
@@ -24,7 +25,9 @@ interface ProductDetailPageProps {
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, onBack }) => {
   const { addToCart, setIsCartOpen, toggleWishlist, isInWishlist, toggleCompare, isInCompare, products } = useCart();
 
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0] || { name: 'Default', hex: '#000000', image: product.images[0] });
+  const [selectedColor, setSelectedColor] = useState(
+    product.availableColors?.[0] || { name: 'Default', hex: '#000000', image: product.images?.[0] || DEFAULT_PRODUCT_IMAGE }
+  );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // Size run quantities matrix state
@@ -53,7 +56,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
   const [openAccordion, setOpenAccordion] = useState<string | null>('desc');
   const [addedSuccess, setAddedSuccess] = useState(false);
 
-  const currentImage = selectedColor?.image || product.images[activeImageIndex] || product.images[0];
+  const rawImage = selectedColor?.image || product.images?.[activeImageIndex] || product.images?.[0] || DEFAULT_PRODUCT_IMAGE;
+  const currentImage = resolveImageUrl(rawImage, DEFAULT_PRODUCT_IMAGE);
 
   const totalQuantity = (Object.values(sizeQuantities) as number[]).reduce((acc: number, curr: number) => acc + (curr || 0), 0);
   const isUnderMoq = totalQuantity < (product.moq || 24);
@@ -115,6 +119,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
               <img 
                 src={currentImage} 
                 alt={product.name} 
+                onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
                 className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />
 
@@ -152,7 +157,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
 
             {/* Thumbnail Carousel Slider */}
             <div className="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar">
-              {product.images.map((img, idx) => (
+              {(product.images || []).map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
@@ -160,7 +165,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ product, o
                     activeImageIndex === idx ? 'border-[#0F172A] scale-105 shadow-md' : 'border-gray-200 hover:border-gray-400'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img 
+                    src={resolveImageUrl(img, DEFAULT_PRODUCT_IMAGE)} 
+                    alt="" 
+                    onError={(e) => handleImageError(e, DEFAULT_PRODUCT_IMAGE)}
+                    className="w-full h-full object-cover" 
+                  />
                 </button>
               ))}
             </div>

@@ -33,7 +33,7 @@ export const DEFAULT_SITE_CONFIG: SiteConfig = {
   heroHeadline: 'DIRECT FROM LUDHIANA',
   heroSubheadline: "Manufacturer of Premium Men's Garments",
   heroBadge: "LATEST MEN'S COLLECTION",
-  heroImage: '/src/assets/images/fortune_hero_flatlay_1791987492427.jpg',
+  heroImage: '/images/hero_flatlay.jpg',
   heroFeaturedProductId: 'prod-oversized-tshirt',
   announcementBanner: 'DIRECT FACTORY WHOLESALE • 100% GST INVOICE • PAN INDIA DISPATCH',
   announcementEnabled: true,
@@ -50,7 +50,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 't-shirts',
     description: '180 to 240 GSM combed compact cotton regular & fitted tees',
     icon: 'Shirt',
-    image: '/src/assets/images/cat_tshirts_1791987514882.jpg',
+    image: '/images/cat_tshirts.jpg',
     count: 24,
     featured: true,
     displayOrder: 1
@@ -61,7 +61,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'oversized',
     description: '240+ GSM drop-shoulder streetwear oversized tees',
     icon: 'Layers',
-    image: '/src/assets/images/cat_oversized_1791987535237.jpg',
+    image: '/images/cat_oversized.jpg',
     count: 18,
     featured: true,
     displayOrder: 2
@@ -72,7 +72,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'polos',
     description: '220 GSM premium knit collar polo t-shirts',
     icon: 'Sparkles',
-    image: '/src/assets/images/cat_polos_1791987559351.jpg',
+    image: '/images/cat_polos.jpg',
     count: 15,
     featured: true,
     displayOrder: 3
@@ -83,7 +83,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'sweatshirts',
     description: '300 to 360 GSM classic crewneck fleece sweatshirts',
     icon: 'Wind',
-    image: '/src/assets/images/cat_sweatshirts_1791987585313.jpg',
+    image: '/images/cat_sweatshirts.jpg',
     count: 12,
     featured: true,
     displayOrder: 4
@@ -94,7 +94,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'hoodies',
     description: '330 to 400 GSM brushed fleece kangaroo pocket hoodies',
     icon: 'Layers',
-    image: '/src/assets/images/cat_hoodies_1791987612418.jpg',
+    image: '/images/cat_hoodies.jpg',
     count: 16,
     featured: true,
     displayOrder: 5
@@ -105,7 +105,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'tracksuits',
     description: 'Coordinated jacket and jogger sets for sports & casual',
     icon: 'Flame',
-    image: '/src/assets/images/cat_tracksuits_1791987639180.jpg',
+    image: '/images/cat_tracksuits.jpg',
     count: 10,
     featured: true,
     displayOrder: 6
@@ -116,7 +116,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'track-pants',
     description: '280 GSM heavy loopknit joggers & track pants',
     icon: 'SlidersHorizontal',
-    image: '/src/assets/images/cat_trackpants_1791987671341.jpg',
+    image: '/images/cat_trackpants.jpg',
     count: 14,
     featured: true,
     displayOrder: 7
@@ -127,7 +127,7 @@ export const DEFAULT_CATEGORIES: CategoryItem[] = [
     slug: 'jackets',
     description: 'Quilted puffer down jackets, bombers & winter coats',
     icon: 'PackageCheck',
-    image: '/src/assets/images/cat_jackets_1791987704485.jpg',
+    image: '/images/cat_jackets.jpg',
     count: 8,
     featured: true,
     displayOrder: 8
